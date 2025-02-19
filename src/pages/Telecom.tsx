@@ -157,6 +157,12 @@ const Telecom = () => {
 
         <div className="flex flex-col gap-4 items-center">
           <Button
+            className="button-hover bg-primary text-white font-bold"
+            onClick={handleSubmit}
+          >
+            Solicitar Proposta
+          </Button>
+          <Button
             variant="ghost"
             className="button-hover"
             onClick={() => navigate(-1)}

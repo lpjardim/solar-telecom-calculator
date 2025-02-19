@@ -72,7 +72,7 @@ const EnergyCalculator = () => {
 
         <div className="flex flex-col gap-4 items-center">
           <Button
-            className="button-hover bg-primary text-white"
+            className="button-hover bg-primary text-white font-bold"
             onClick={calculateConsumption}
           >
             Solicitar Proposta
