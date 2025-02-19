@@ -41,15 +41,28 @@ const Index = () => {
           </p>
         </div>
 
-        <Button
-          size="lg"
-          className="button-hover text-lg px-8 py-6 font-bold shadow-lg hover:shadow-xl transition-all duration-300 bg-gradient-to-r from-primary to-primary/90 hover:from-primary hover:to-primary"
-          onMouseEnter={() => setIsHovered(true)}
-          onMouseLeave={() => setIsHovered(false)}
-          onClick={() => navigate("/services")}
-        >
-          Iniciar Simulação
-        </Button>
+        <div className="space-y-8">
+          <Button
+            size="lg"
+            className="button-hover text-lg px-8 py-6 font-bold shadow-lg hover:shadow-xl transition-all duration-300 bg-gradient-to-r from-primary to-primary/90 hover:from-primary hover:to-primary"
+            onMouseEnter={() => setIsHovered(true)}
+            onMouseLeave={() => setIsHovered(false)}
+            onClick={() => navigate("/services")}
+          >
+            Iniciar Simulação
+          </Button>
+
+          <div className="flex flex-col items-center space-y-2">
+            <div className="flex -space-x-2">
+              {[1, 2, 3, 4, 5].map((i) => (
+                <div key={i} className="w-8 h-8 rounded-full border-2 border-background bg-primary/20" />
+              ))}
+            </div>
+            <p className="text-sm text-muted-foreground">
+              <span className="font-semibold">2,359</span> clientes satisfeitos
+            </p>
+          </div>
+        </div>
 
         <div className="space-y-6">
           <div className="flex items-center justify-center gap-6">
@@ -84,7 +97,7 @@ const Index = () => {
       </div>
 
       <div className="mt-6 mb-4 px-4 text-sm text-muted-foreground md:mt-12 md:mb-0">
-        Agente Autorizado EDP • A Sua Escolha de Confiança
+        Agente Autorizado EDP
       </div>
     </div>
   );
