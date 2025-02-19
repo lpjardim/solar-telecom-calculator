@@ -10,6 +10,14 @@ const Index = () => {
   const { theme, setTheme } = useTheme();
   const [isHovered, setIsHovered] = useState(false);
 
+  const reviewImages = [
+    "https://images.unsplash.com/photo-1649972904349-6e44c42644a7?w=64&h=64&auto=format&fit=crop",
+    "https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?w=64&h=64&auto=format&fit=crop",
+    "https://images.unsplash.com/photo-1581092795360-fd1ca04f0952?w=64&h=64&auto=format&fit=crop",
+    "https://images.unsplash.com/photo-1649972904349-6e44c42644a7?w=64&h=64&auto=format&fit=crop",
+    "https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?w=64&h=64&auto=format&fit=crop",
+  ];
+
   return (
     <div className="min-h-screen flex flex-col items-center justify-between p-6 bg-gradient-to-br from-background via-secondary/10 to-secondary/30 page-transition">
       <div className="absolute top-6 right-6 flex items-center gap-4">
@@ -54,8 +62,17 @@ const Index = () => {
 
           <div className="flex flex-col items-center space-y-2">
             <div className="flex -space-x-2">
-              {[1, 2, 3, 4, 5].map((i) => (
-                <div key={i} className="w-8 h-8 rounded-full border-2 border-background bg-primary/20" />
+              {reviewImages.map((image, i) => (
+                <div 
+                  key={i} 
+                  className="w-8 h-8 rounded-full border-2 border-background overflow-hidden"
+                >
+                  <img 
+                    src={image} 
+                    alt={`Cliente satisfeito ${i + 1}`}
+                    className="w-full h-full object-cover"
+                  />
+                </div>
               ))}
             </div>
             <p className="text-sm text-muted-foreground">
