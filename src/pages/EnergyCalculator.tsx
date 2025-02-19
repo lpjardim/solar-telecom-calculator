@@ -133,7 +133,7 @@ const EnergyCalculator = () => {
             <Label htmlFor="observations">Observações:</Label>
             <Textarea
               id="observations"
-              placeholder="Se tiver horários específicos de consumo, equipamentos de alto consumo ou outras informações relevantes, por favor adicione aqui..."
+              placeholder="Adicione aqui qualquer observação ou pedido especial"
               value={observations}
               onChange={(e) => setObservations(e.target.value)}
               className="min-h-[100px]"
