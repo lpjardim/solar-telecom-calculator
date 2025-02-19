@@ -1,3 +1,4 @@
+
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
@@ -35,7 +36,7 @@ const benefits = [
   },
   {
     icon: <Medal className="h-8 w-8" />,
-    title: "Melhor Serviço",
+    title: "Marca Premiada",
     description: "Garantimos a melhor qualidade de serviço",
   },
 ];
