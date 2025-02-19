@@ -1,7 +1,7 @@
 
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { Facebook, Instagram, Linkedin, Sun, Moon } from "lucide-react";
+import { Facebook, Instagram, Linkedin, Sun, Moon, MapPin } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useTheme } from "@/components/theme-provider";
 
@@ -25,7 +25,7 @@ const Index = () => {
 
       <div className="flex-1 flex flex-col items-center justify-center gap-12 max-w-4xl w-full text-center">
         <div className="space-y-6">
-          <div className="w-48 h-48 mx-auto mb-8">
+          <div className="w-64 h-64 mx-auto mb-8">
             <img 
               src="/lovable-uploads/c4e58cf3-4611-4542-9a70-4e17142c6b5e.png" 
               alt="Jardim Solar Logo" 
@@ -51,28 +51,35 @@ const Index = () => {
           Iniciar Simulação
         </Button>
 
-        <div className="flex gap-6 mt-8">
-          <a
-            href="#"
-            className="text-muted-foreground hover:text-foreground button-hover"
-            aria-label="Facebook"
-          >
-            <Facebook className="h-6 w-6" />
-          </a>
-          <a
-            href="#"
-            className="text-muted-foreground hover:text-foreground button-hover"
-            aria-label="Instagram"
-          >
-            <Instagram className="h-6 w-6" />
-          </a>
-          <a
-            href="#"
-            className="text-muted-foreground hover:text-foreground button-hover"
-            aria-label="LinkedIn"
-          >
-            <Linkedin className="h-6 w-6" />
-          </a>
+        <div className="space-y-6">
+          <div className="flex gap-6">
+            <a
+              href="#"
+              className="text-muted-foreground hover:text-foreground button-hover"
+              aria-label="Facebook"
+            >
+              <Facebook className="h-6 w-6" />
+            </a>
+            <a
+              href="#"
+              className="text-muted-foreground hover:text-foreground button-hover"
+              aria-label="Instagram"
+            >
+              <Instagram className="h-6 w-6" />
+            </a>
+            <a
+              href="#"
+              className="text-muted-foreground hover:text-foreground button-hover"
+              aria-label="LinkedIn"
+            >
+              <Linkedin className="h-6 w-6" />
+            </a>
+          </div>
+          
+          <div className="flex items-center justify-center gap-2 text-muted-foreground">
+            <MapPin className="h-4 w-4" />
+            <span>Rua Principal, 123, Lisboa</span>
+          </div>
         </div>
       </div>
 
