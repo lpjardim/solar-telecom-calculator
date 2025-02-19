@@ -11,7 +11,7 @@ const Index = () => {
   const [isHovered, setIsHovered] = useState(false);
 
   return (
-    <div className="min-h-screen flex flex-col items-center justify-between p-6 bg-gradient-to-br from-background to-secondary/20 page-transition">
+    <div className="min-h-screen flex flex-col items-center justify-between p-6 bg-gradient-to-br from-background via-secondary/10 to-secondary/30 page-transition">
       <div className="absolute top-6 right-6 flex items-center gap-4">
         <Button
           variant="ghost"
@@ -33,7 +33,7 @@ const Index = () => {
             />
           </div>
           
-          <h1 className="text-4xl font-bold tracking-tight text-primary bg-gradient-to-r from-primary to-primary/80 bg-clip-text text-transparent">
+          <h1 className="text-4xl font-bold tracking-tight text-primary bg-gradient-to-r from-primary/70 via-primary/85 to-primary bg-clip-text text-transparent">
             Reduza os seus custos de Energia e Telecomunicações
           </h1>
           <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
