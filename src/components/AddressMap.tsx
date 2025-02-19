@@ -1,8 +1,6 @@
 
 import { useState, useCallback } from 'react';
 import { GoogleMap, useJsApiLoader, Marker } from '@react-google-maps/api';
-import { Input } from './ui/input';
-import { Button } from './ui/button';
 
 const containerStyle = {
   width: '100%',
@@ -19,12 +17,9 @@ interface AddressMapProps {
 }
 
 const AddressMap = ({ onLocationSelect }: AddressMapProps) => {
-  const [apiKey, setApiKey] = useState(() => localStorage.getItem('google_maps_api_key') || '');
-  const [showMap, setShowMap] = useState(false);
-
   const { isLoaded } = useJsApiLoader({
     id: 'google-map-script',
-    googleMapsApiKey: apiKey
+    googleMapsApiKey: 'YOUR_API_KEY_HERE' // Substitua pela sua chave real em produção
   });
 
   const [marker, setMarker] = useState(center);
@@ -37,41 +32,6 @@ const AddressMap = ({ onLocationSelect }: AddressMapProps) => {
       onLocationSelect(lat, lng);
     }
   }, [onLocationSelect]);
-
-  const handleApiKeySubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    localStorage.setItem('google_maps_api_key', apiKey);
-    setShowMap(true);
-  };
-
-  if (!showMap) {
-    return (
-      <form onSubmit={handleApiKeySubmit} className="space-y-4">
-        <div className="space-y-2">
-          <p className="text-sm text-muted-foreground">
-            Para usar o mapa, por favor insira sua chave API do Google Maps. 
-            Você pode obter uma chave em: 
-            <a 
-              href="https://console.cloud.google.com/google/maps-apis/credentials" 
-              target="_blank" 
-              rel="noopener noreferrer"
-              className="text-primary hover:underline ml-1"
-            >
-              Google Cloud Console
-            </a>
-          </p>
-          <Input
-            type="text"
-            value={apiKey}
-            onChange={(e) => setApiKey(e.target.value)}
-            placeholder="Cole sua chave API do Google Maps aqui"
-            className="w-full"
-          />
-        </div>
-        <Button type="submit">Carregar Mapa</Button>
-      </form>
-    );
-  }
 
   if (!isLoaded) return <div>Carregando mapa...</div>;
 

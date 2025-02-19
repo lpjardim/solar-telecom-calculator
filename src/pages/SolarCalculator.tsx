@@ -1,4 +1,3 @@
-
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
@@ -46,27 +45,15 @@ const calculateAnnualProduction = (panels: number): number => {
 
 const SolarCalculator = () => {
   const navigate = useNavigate();
-  const [customerType, setCustomerType] = useState<CustomerType>("residential");
-  const [address, setAddress] = useState("");
-  const [showMap, setShowMap] = useState(false);
-  const [mapLocation, setMapLocation] = useState<{ lat: number; lng: number } | null>(null);
   const [systemOptions, setSystemOptions] = useState<SystemOptions>({
     ...initialSystemOptions,
     production: calculateAnnualProduction(initialSystemOptions.panels),
   });
   const [submitted, setSubmitted] = useState(false);
+  const [mapLocation, setMapLocation] = useState<{ lat: number; lng: number } | null>(null);
 
   const handleLocationSelect = (lat: number, lng: number) => {
     setMapLocation({ lat, lng });
-  };
-
-  const handleAddressSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    if (!address) {
-      toast.error("Por favor, insira seu endereço");
-      return;
-    }
-    setShowMap(true);
   };
 
   const handleSubmit = (e: React.FormEvent) => {
@@ -149,67 +136,6 @@ const SolarCalculator = () => {
           </div>
 
           <div className="flex gap-4 justify-center">
-            <Button
-              variant="ghost"
-              className="button-hover"
-              onClick={() => navigate("/")}
-            >
-              <Home className="mr-2 h-4 w-4" />
-              Página Inicial
-            </Button>
-          </div>
-        </div>
-      </div>
-    );
-  }
-
-  if (!showMap) {
-    return (
-      <div className="min-h-screen flex flex-col items-center justify-center p-6 page-transition">
-        <div className="max-w-3xl w-full space-y-8">
-          <h1 className="text-4xl font-bold tracking-tight mb-12 text-primary flex items-center justify-center gap-3">
-            <Sun className="h-16 w-16 text-yellow-500" />
-            Painéis Solares
-          </h1>
-
-          <div className="text-center space-y-4">
-            <p className="text-2xl font-semibold">
-              aos preços mais baixos em Portugal
-            </p>
-            <p className="text-lg text-muted-foreground">
-              ⚡ Simule já a sua proposta e poupe até 80% na fatura de eletricidade
-            </p>
-          </div>
-
-          <form onSubmit={handleAddressSubmit} className="glass p-8 rounded-2xl space-y-6">
-            <div className="space-y-2">
-              <label className="text-sm font-medium flex items-center gap-2">
-                <MapPin className="h-4 w-4 text-primary" />
-                Verifique o seu endereço
-              </label>
-              <div className="flex gap-4">
-                <Input
-                  type="text"
-                  placeholder="Ex: Rua do Sol, 123"
-                  value={address}
-                  onChange={(e) => setAddress(e.target.value)}
-                  className="text-lg flex-1"
-                />
-                <Button type="submit" className="button-hover">
-                  Continuar
-                </Button>
-              </div>
-            </div>
-          </form>
-
-          <div className="flex gap-4 justify-center">
-            <Button
-              variant="ghost"
-              className="button-hover"
-              onClick={() => navigate(-1)}
-            >
-              Voltar
-            </Button>
             <Button
               variant="ghost"
               className="button-hover"
@@ -383,4 +309,3 @@ const SolarCalculator = () => {
 };
 
 export default SolarCalculator;
-
