@@ -1,4 +1,3 @@
-
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
@@ -134,7 +133,7 @@ const EnergyCalculator = () => {
             <Label htmlFor="observations">Observações:</Label>
             <Textarea
               id="observations"
-              placeholder="Adicione aqui qualquer informação adicional relevante..."
+              placeholder="Se tiver horários específicos de consumo, equipamentos de alto consumo ou outras informações relevantes, por favor adicione aqui..."
               value={observations}
               onChange={(e) => setObservations(e.target.value)}
               className="min-h-[100px]"
