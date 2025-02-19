@@ -211,7 +211,7 @@ const SolarCalculator = () => {
             </Button>
             <Button
               variant="ghost"
-2              className="button-hover"
+              className="button-hover"
               onClick={() => navigate("/")}
             >
               <Home className="mr-2 h-4 w-4" />
@@ -239,7 +239,6 @@ const SolarCalculator = () => {
           </h2>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {/* Número de Painéis */}
             <div className="p-4 rounded-xl bg-primary/5 space-y-2">
               <h3 className="font-semibold flex items-center gap-2">
                 <PanelTop className="h-5 w-5 text-primary" />
@@ -264,7 +263,6 @@ const SolarCalculator = () => {
               </Select>
             </div>
 
-            {/* Bateria */}
             <div className="p-4 rounded-xl bg-primary/5 space-y-2">
               <h3 className="font-semibold flex items-center gap-2">
                 <Battery className="h-5 w-5 text-primary" />
@@ -287,7 +285,6 @@ const SolarCalculator = () => {
               </Select>
             </div>
 
-            {/* Monitorização */}
             <div className="p-4 rounded-xl bg-primary/5 space-y-2">
               <h3 className="font-semibold flex items-center gap-2">
                 <Monitor className="h-5 w-5 text-primary" />
@@ -302,7 +299,6 @@ const SolarCalculator = () => {
               </div>
             </div>
 
-            {/* Garantia */}
             <div className="p-4 rounded-xl bg-primary/5 space-y-2">
               <h3 className="font-semibold flex items-center gap-2">
                 <Shield className="h-5 w-5 text-primary" />
@@ -317,7 +313,6 @@ const SolarCalculator = () => {
               </div>
             </div>
 
-            {/* Produção Anual */}
             <div className="p-4 rounded-xl bg-primary/5 space-y-2">
               <h3 className="font-semibold flex items-center gap-2">
                 <Sparkles className="h-5 w-5 text-primary" />
@@ -331,7 +326,6 @@ const SolarCalculator = () => {
               </div>
             </div>
 
-            {/* Poupança Estimada */}
             <div className="p-4 rounded-xl bg-primary/5 space-y-2">
               <h3 className="font-semibold flex items-center gap-2">
                 <Lightbulb className="h-5 w-5 text-primary" />
@@ -346,7 +340,6 @@ const SolarCalculator = () => {
             </div>
           </div>
 
-          {/* Email */}
           <div className="space-y-2">
             <label className="text-sm font-medium flex items-center gap-2">
               <Mail className="h-4 w-4 text-primary" />
