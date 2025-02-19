@@ -31,7 +31,7 @@ const EnergyCalculator = () => {
     <div className="min-h-screen flex flex-col items-center justify-center p-6 page-transition">
       <div className="max-w-3xl w-full space-y-8">
         <h1 className="text-4xl font-bold tracking-tight mb-12 text-primary flex items-center justify-center gap-3">
-          <Building2 className="h-12 w-12 text-primary" />
+          <Building2 className="h-16 w-16 text-orange-500" />
           Simulador de Poupança
         </h1>
 
