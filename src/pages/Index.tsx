@@ -52,7 +52,7 @@ const Index = () => {
         </Button>
 
         <div className="space-y-6">
-          <div className="flex gap-6">
+          <div className="flex items-center justify-center gap-6">
             <a
               href="#"
               className="text-muted-foreground hover:text-foreground button-hover"
