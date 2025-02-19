@@ -166,11 +166,12 @@ const SolarCalculator = () => {
     return (
       <div className="min-h-screen flex flex-col items-center justify-center p-6 page-transition">
         <div className="max-w-3xl w-full space-y-8">
+          <h1 className="text-4xl font-bold tracking-tight mb-12 text-primary flex items-center justify-center gap-3">
+            <Sun className="h-12 w-12 text-primary" />
+            Simulador Solar
+          </h1>
+
           <div className="text-center space-y-4">
-            <h1 className="text-4xl font-bold tracking-tight text-primary flex items-center justify-center gap-3">
-              <Sun className="h-10 w-10 text-yellow-500" />
-              Painéis Solares
-            </h1>
             <p className="text-2xl font-semibold">
               aos preços mais baixos em Portugal
             </p>

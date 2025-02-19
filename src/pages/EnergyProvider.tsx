@@ -19,7 +19,7 @@ const EnergyProvider = () => {
     <div className="min-h-screen flex flex-col items-center justify-center p-6 page-transition">
       <div className="max-w-4xl w-full text-center space-y-8">
         <h1 className="text-4xl font-bold tracking-tight mb-12 text-primary flex items-center justify-center gap-3">
-          <Building2 className="h-8 w-8 text-primary" />
+          <Building2 className="h-12 w-12 text-primary" />
           Qual é a sua comercializadora atual?
         </h1>
 
