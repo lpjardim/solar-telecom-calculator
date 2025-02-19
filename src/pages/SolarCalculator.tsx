@@ -5,13 +5,7 @@ import { Input } from "@/components/ui/input";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { toast } from "sonner";
 import {
-  Sun,
   Home,
-  Building2,
-  Zap,
-  Calculator,
-  MapPin,
-  Euro,
   Check,
   Battery,
   PanelTop,
@@ -20,10 +14,8 @@ import {
   Sparkles,
   Lightbulb,
   Mail,
+  MapPin,
 } from "lucide-react";
-import AddressMap from "@/components/AddressMap";
-
-type CustomerType = "residential" | "business";
 
 type SystemOptions = {
   panels: number;
@@ -50,11 +42,6 @@ const SolarCalculator = () => {
     production: calculateAnnualProduction(initialSystemOptions.panels),
   });
   const [submitted, setSubmitted] = useState(false);
-  const [mapLocation, setMapLocation] = useState<{ lat: number; lng: number } | null>(null);
-
-  const handleLocationSelect = (lat: number, lng: number) => {
-    setMapLocation({ lat, lng });
-  };
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -153,10 +140,6 @@ const SolarCalculator = () => {
   return (
     <div className="min-h-screen flex flex-col items-center justify-center p-6 page-transition">
       <div className="max-w-4xl w-full space-y-12">
-        <div className="space-y-6">
-          <AddressMap onLocationSelect={handleLocationSelect} />
-        </div>
-
         <div className="glass p-8 rounded-2xl space-y-8">
           <h2 className="text-2xl font-semibold text-center">
             Personalize o seu sistema
