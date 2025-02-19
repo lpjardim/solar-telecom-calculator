@@ -1,4 +1,3 @@
-
 import { Toaster } from "@/components/ui/toaster";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
@@ -12,6 +11,7 @@ import EnergyProvider from "./pages/EnergyProvider";
 import EnergyCalculator from "./pages/EnergyCalculator";
 import Telecom from "./pages/Telecom";
 import NotFound from "./pages/NotFound";
+import SolarCalculator from "./pages/SolarCalculator";
 
 const queryClient = new QueryClient();
 
@@ -28,6 +28,7 @@ const App = () => (
             <Route path="/energy" element={<Energy />} />
             <Route path="/energy/provider" element={<EnergyProvider />} />
             <Route path="/energy/calculator/:providerId" element={<EnergyCalculator />} />
+            <Route path="/energy/solar" element={<SolarCalculator />} />
             <Route path="/telecom" element={<Telecom />} />
             <Route path="*" element={<NotFound />} />
           </Routes>
