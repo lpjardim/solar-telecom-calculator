@@ -1,5 +1,5 @@
 
-import { useState, useCallback } from 'react';
+import { useState, useCallback, useMemo } from 'react';
 import { GoogleMap, useJsApiLoader, Marker } from '@react-google-maps/api';
 
 const containerStyle = {
@@ -12,16 +12,18 @@ const center = {
   lng: -9.1393
 };
 
+const mapOptions = {
+  id: 'google-map-script',
+  googleMapsApiKey: '',  // Chave removida para evitar conflito
+  libraries: ['places']
+};
+
 interface AddressMapProps {
   onLocationSelect: (lat: number, lng: number) => void;
 }
 
 const AddressMap = ({ onLocationSelect }: AddressMapProps) => {
-  const { isLoaded } = useJsApiLoader({
-    id: 'google-map-script',
-    googleMapsApiKey: 'YOUR_API_KEY_HERE' // Substitua pela sua chave real em produção
-  });
-
+  const { isLoaded } = useJsApiLoader(mapOptions);
   const [marker, setMarker] = useState(center);
 
   const onClick = useCallback((e: google.maps.MapMouseEvent) => {
@@ -33,7 +35,7 @@ const AddressMap = ({ onLocationSelect }: AddressMapProps) => {
     }
   }, [onLocationSelect]);
 
-  if (!isLoaded) return <div>Carregando mapa...</div>;
+  if (!isLoaded) return <div>Carregando...</div>;
 
   return (
     <div className="w-full rounded-xl overflow-hidden">
@@ -50,4 +52,3 @@ const AddressMap = ({ onLocationSelect }: AddressMapProps) => {
 };
 
 export default AddressMap;
-
