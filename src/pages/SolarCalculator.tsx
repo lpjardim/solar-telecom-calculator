@@ -3,7 +3,7 @@ import { useState, useCallback } from "react";
 import { useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { Select } from "@/components/ui/select";
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { toast } from "sonner";
 import {
   Sun,
@@ -14,82 +14,40 @@ import {
   MapPin,
   Euro,
   Check,
+  Battery,
+  PanelTop,
+  Monitor,
+  Shield,
+  Sparkles,
+  Lightbulb,
 } from "lucide-react";
 import AddressMap from "@/components/AddressMap";
 
 type CustomerType = "residential" | "business";
 
-const benefits = [
-  {
-    title: "Painéis Solares",
-    description: "Equipamentos de última geração",
-    included: true,
-  },
-  {
-    title: "Serviço de Instalação",
-    description: "Instalação profissional incluída",
-    included: true,
-  },
-  {
-    title: "Bateria",
-    description: "Armazenamento de energia",
-    included: true,
-  },
-  {
-    title: "Garantia 25 Anos",
-    description: "Garantia extendida",
-    included: true,
-  },
-  {
-    title: "6300 kWh",
-    description: "Produção anual",
-    included: true,
-  },
-  {
-    title: "Aplicação de Monitorização",
-    description: "Controle em tempo real",
-    included: true,
-  },
-];
+type SystemOptions = {
+  panels: number;
+  hasBattery: boolean;
+  hasMonitoring: boolean;
+  warranty: "standard" | "extended";
+  production: "6300" | "8400" | "10500";
+};
+
+const initialSystemOptions: SystemOptions = {
+  panels: 8,
+  hasBattery: true,
+  hasMonitoring: true,
+  warranty: "extended",
+  production: "6300",
+};
 
 const SolarCalculator = () => {
   const navigate = useNavigate();
   const [customerType, setCustomerType] = useState<CustomerType>("residential");
-  const [monthlyConsumption, setMonthlyConsumption] = useState("");
-  const [roofArea, setRoofArea] = useState("");
-  const [location, setLocation] = useState("");
-  const [currentBill, setCurrentBill] = useState("");
-  const [submitted, setSubmitted] = useState(false);
   const [address, setAddress] = useState("");
   const [showMap, setShowMap] = useState(false);
   const [mapLocation, setMapLocation] = useState<{ lat: number; lng: number } | null>(null);
-
-  const calculateSavings = () => {
-    const consumption = Number(monthlyConsumption);
-    const bill = Number(currentBill);
-    const solarProduction = consumption * 0.7; // Estimativa de 70% do consumo
-    const monthlySavings = bill * 0.7; // 70% de economia média
-
-    return {
-      production: solarProduction.toFixed(0),
-      monthly: monthlySavings.toFixed(2),
-      annual: (monthlySavings * 12).toFixed(2),
-      co2: ((solarProduction * 12) * 0.5).toFixed(0), // kg de CO2 evitados por ano
-    };
-  };
-
-  const savings = monthlyConsumption && currentBill ? calculateSavings() : null;
-
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    
-    if (!monthlyConsumption || !currentBill) {
-      toast.error("Por favor, preencha todos os campos obrigatórios");
-      return;
-    }
-
-    setSubmitted(true);
-  };
+  const [systemOptions, setSystemOptions] = useState<SystemOptions>(initialSystemOptions);
 
   const handleLocationSelect = (lat: number, lng: number) => {
     setMapLocation({ lat, lng });
@@ -102,6 +60,21 @@ const SolarCalculator = () => {
       return;
     }
     setShowMap(true);
+  };
+
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    toast.success("Proposta solicitada com sucesso!");
+  };
+
+  const updateSystemOption = <K extends keyof SystemOptions>(
+    key: K,
+    value: SystemOptions[K]
+  ) => {
+    setSystemOptions((prev) => ({
+      ...prev,
+      [key]: value,
+    }));
   };
 
   if (!showMap) {
@@ -176,24 +149,142 @@ const SolarCalculator = () => {
 
         <div className="glass p-8 rounded-2xl space-y-8">
           <h2 className="text-2xl font-semibold text-center">
-            Este é o seu sistema
+            Personalize o seu sistema
           </h2>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {benefits.map((benefit, index) => (
-              <div
-                key={index}
-                className="p-4 rounded-xl bg-primary/5 space-y-2"
+            {/* Número de Painéis */}
+            <div className="p-4 rounded-xl bg-primary/5 space-y-2">
+              <h3 className="font-semibold flex items-center gap-2">
+                <PanelTop className="h-5 w-5 text-primary" />
+                Painéis Solares
+              </h3>
+              <p className="text-sm text-muted-foreground mb-4">
+                Número de painéis no sistema
+              </p>
+              <Select
+                value={String(systemOptions.panels)}
+                onValueChange={(value) => updateSystemOption("panels", Number(value))}
               >
-                <h3 className="font-semibold flex items-center gap-2">
-                  <Check className="h-5 w-5 text-primary" />
-                  {benefit.title}
-                </h3>
-                <p className="text-sm text-muted-foreground">
-                  {benefit.description}
-                </p>
-              </div>
-            ))}
+                <SelectTrigger>
+                  <SelectValue />
+                </SelectTrigger>
+                <SelectContent>
+                  <SelectItem value="6">6 Painéis</SelectItem>
+                  <SelectItem value="8">8 Painéis</SelectItem>
+                  <SelectItem value="10">10 Painéis</SelectItem>
+                  <SelectItem value="12">12 Painéis</SelectItem>
+                </SelectContent>
+              </Select>
+            </div>
+
+            {/* Bateria */}
+            <div className="p-4 rounded-xl bg-primary/5 space-y-2">
+              <h3 className="font-semibold flex items-center gap-2">
+                <Battery className="h-5 w-5 text-primary" />
+                Bateria
+              </h3>
+              <p className="text-sm text-muted-foreground mb-4">
+                Sistema de armazenamento
+              </p>
+              <Select
+                value={systemOptions.hasBattery ? "yes" : "no"}
+                onValueChange={(value) => updateSystemOption("hasBattery", value === "yes")}
+              >
+                <SelectTrigger>
+                  <SelectValue />
+                </SelectTrigger>
+                <SelectContent>
+                  <SelectItem value="yes">Com Bateria</SelectItem>
+                  <SelectItem value="no">Sem Bateria</SelectItem>
+                </SelectContent>
+              </Select>
+            </div>
+
+            {/* Monitorização */}
+            <div className="p-4 rounded-xl bg-primary/5 space-y-2">
+              <h3 className="font-semibold flex items-center gap-2">
+                <Monitor className="h-5 w-5 text-primary" />
+                Monitorização
+              </h3>
+              <p className="text-sm text-muted-foreground mb-4">
+                Sistema de monitorização
+              </p>
+              <Select
+                value={systemOptions.hasMonitoring ? "yes" : "no"}
+                onValueChange={(value) => updateSystemOption("hasMonitoring", value === "yes")}
+              >
+                <SelectTrigger>
+                  <SelectValue />
+                </SelectTrigger>
+                <SelectContent>
+                  <SelectItem value="yes">Com Monitorização</SelectItem>
+                  <SelectItem value="no">Sem Monitorização</SelectItem>
+                </SelectContent>
+              </Select>
+            </div>
+
+            {/* Garantia */}
+            <div className="p-4 rounded-xl bg-primary/5 space-y-2">
+              <h3 className="font-semibold flex items-center gap-2">
+                <Shield className="h-5 w-5 text-primary" />
+                Garantia
+              </h3>
+              <p className="text-sm text-muted-foreground mb-4">
+                Tipo de garantia
+              </p>
+              <Select
+                value={systemOptions.warranty}
+                onValueChange={(value) => updateSystemOption("warranty", value as "standard" | "extended")}
+              >
+                <SelectTrigger>
+                  <SelectValue />
+                </SelectTrigger>
+                <SelectContent>
+                  <SelectItem value="standard">12 Anos</SelectItem>
+                  <SelectItem value="extended">25 Anos</SelectItem>
+                </SelectContent>
+              </Select>
+            </div>
+
+            {/* Produção Anual */}
+            <div className="p-4 rounded-xl bg-primary/5 space-y-2">
+              <h3 className="font-semibold flex items-center gap-2">
+                <Sparkles className="h-5 w-5 text-primary" />
+                Produção Anual
+              </h3>
+              <p className="text-sm text-muted-foreground mb-4">
+                Estimativa de produção
+              </p>
+              <Select
+                value={systemOptions.production}
+                onValueChange={(value) => updateSystemOption("production", value as "6300" | "8400" | "10500")}
+              >
+                <SelectTrigger>
+                  <SelectValue />
+                </SelectTrigger>
+                <SelectContent>
+                  <SelectItem value="6300">6300 kWh/ano</SelectItem>
+                  <SelectItem value="8400">8400 kWh/ano</SelectItem>
+                  <SelectItem value="10500">10500 kWh/ano</SelectItem>
+                </SelectContent>
+              </Select>
+            </div>
+
+            {/* Poupança Estimada */}
+            <div className="p-4 rounded-xl bg-primary/5 space-y-2">
+              <h3 className="font-semibold flex items-center gap-2">
+                <Lightbulb className="h-5 w-5 text-primary" />
+                Poupança Estimada
+              </h3>
+              <p className="text-sm text-muted-foreground">
+                Até 80% na fatura
+              </p>
+              <p className="text-lg font-semibold text-primary">
+                {systemOptions.production === "6300" ? "3.780€" : 
+                 systemOptions.production === "8400" ? "5.040€" : "6.300€"} /ano
+              </p>
+            </div>
           </div>
 
           <div className="flex gap-4 justify-center">
