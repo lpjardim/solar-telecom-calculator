@@ -1,4 +1,3 @@
-
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
@@ -126,7 +125,7 @@ const Telecom = () => {
             <div className="glass p-8 rounded-2xl space-y-6">
               <div className="flex items-center justify-center gap-3 text-2xl font-semibold text-primary">
                 <MessageSquare className="h-8 w-8" />
-                <span>Envie SMS e Melhore o Seu Serviço</span>
+                <span>Solicitar Proposta</span>
               </div>
               
               <div className="space-y-4">
@@ -155,12 +154,6 @@ const Telecom = () => {
         )}
 
         <div className="flex flex-col gap-4 items-center">
-          <Button
-            className="button-hover bg-primary text-white"
-            onClick={handleSubmit}
-          >
-            Solicitar Proposta
-          </Button>
           <Button
             variant="ghost"
             className="button-hover"
