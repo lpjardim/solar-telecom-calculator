@@ -1,3 +1,4 @@
+
 import { useState, useCallback } from "react";
 import { useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
@@ -116,7 +117,7 @@ const SolarCalculator = () => {
               aos preços mais baixos em Portugal
             </p>
             <p className="text-lg text-muted-foreground">
-              ⚡ Assine já o seu contrato e poupe até 80% na fatura de eletricidade
+              ⚡ Simule já a sua proposta e poupe até 80% na fatura de eletricidade
             </p>
           </div>
 
