@@ -269,6 +269,12 @@ const EnergyCalculator = () => {
 
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Button
+              onClick={handleSubmit}
+              className="button-hover bg-primary text-white"
+            >
+              Solicitar Proposta
+            </Button>
+            <Button
               type="button"
               variant="ghost"
               className="button-hover"
@@ -283,12 +289,6 @@ const EnergyCalculator = () => {
             >
               <Home className="mr-2 h-4 w-4" />
               Página Inicial
-            </Button>
-            <Button
-              onClick={handleSubmit}
-              className="button-hover bg-primary text-white"
-            >
-              Solicitar Proposta
             </Button>
           </div>
         </div>

@@ -361,7 +361,13 @@ const SolarCalculator = () => {
             />
           </div>
 
-          <div className="flex gap-4 justify-center">
+          <div className="flex flex-col sm:flex-row gap-4 justify-center">
+            <Button
+              onClick={handleSubmit}
+              className="button-hover bg-primary text-white"
+            >
+              Solicitar Proposta
+            </Button>
             <Button
               variant="ghost"
               className="button-hover"
@@ -376,12 +382,6 @@ const SolarCalculator = () => {
             >
               <Home className="mr-2 h-4 w-4" />
               Página Inicial
-            </Button>
-            <Button
-              onClick={handleSubmit}
-              className="button-hover bg-primary text-white px-8"
-            >
-              Solicitar Proposta
             </Button>
           </div>
         </div>

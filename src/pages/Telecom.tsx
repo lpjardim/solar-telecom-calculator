@@ -60,6 +60,10 @@ const Telecom = () => {
     );
   };
 
+  const handleSubmit = () => {
+    // Implement your logic here
+  };
+
   return (
     <div className="min-h-screen flex flex-col items-center justify-center p-6 page-transition">
       <div className="max-w-4xl w-full text-center space-y-12">
@@ -146,6 +150,12 @@ const Telecom = () => {
         )}
 
         <div className="flex gap-4 justify-center">
+          <Button
+            className="mt-8 button-hover bg-primary text-white"
+            onClick={handleSubmit}
+          >
+            Solicitar Proposta
+          </Button>
           <Button
             variant="ghost"
             className="mt-8 button-hover"
