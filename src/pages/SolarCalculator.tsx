@@ -183,7 +183,7 @@ const SolarCalculator = () => {
           <form onSubmit={handleAddressSubmit} className="glass p-8 rounded-2xl space-y-6">
             <div className="space-y-2">
               <label className="text-sm font-medium flex items-center gap-2">
-                <MapPin className="h-4 w-4" />
+                <MapPin className="h-4 w-4 text-primary" />
                 Verifique o seu endereço
               </label>
               <div className="flex gap-4">
@@ -211,7 +211,7 @@ const SolarCalculator = () => {
             </Button>
             <Button
               variant="ghost"
-              className="button-hover"
+2              className="button-hover"
               onClick={() => navigate("/")}
             >
               <Home className="mr-2 h-4 w-4" />
@@ -349,7 +349,7 @@ const SolarCalculator = () => {
           {/* Email */}
           <div className="space-y-2">
             <label className="text-sm font-medium flex items-center gap-2">
-              <Mail className="h-4 w-4" />
+              <Mail className="h-4 w-4 text-primary" />
               Email
             </label>
             <Input
