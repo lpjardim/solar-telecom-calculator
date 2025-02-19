@@ -1,4 +1,3 @@
-
 import { useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { Button } from "@/components/ui/button";
@@ -268,7 +267,7 @@ const EnergyCalculator = () => {
             </div>
           </div>
 
-          <div className="flex gap-4 justify-center">
+          <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Button
               type="button"
               variant="ghost"
@@ -287,7 +286,7 @@ const EnergyCalculator = () => {
             </Button>
             <Button
               onClick={handleSubmit}
-              className="button-hover bg-primary text-white px-8"
+              className="button-hover bg-primary text-white"
             >
               Solicitar Proposta
             </Button>

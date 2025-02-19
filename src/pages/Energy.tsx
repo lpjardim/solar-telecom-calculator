@@ -11,21 +11,10 @@ const Energy = () => {
       <div className="max-w-4xl w-full text-center space-y-8">
         <h1 className="text-4xl font-bold tracking-tight mb-12 text-primary flex items-center justify-center gap-3">
           <Zap className="h-8 w-8 text-primary" />
-          Escolha o Serviço de Energia
+          Escolha o Serviço
         </h1>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-2xl mx-auto">
-          <Button
-            className="glass button-hover p-12 h-auto flex flex-col gap-4 font-bold"
-            variant="outline"
-            onClick={() => navigate("/energy/provider")}
-          >
-            <span className="text-2xl font-semibold">Mudar de Comercializadora</span>
-            <span className="text-muted-foreground">
-              Compare tarifas e<br />encontre a melhor comercializadora
-            </span>
-          </Button>
-
           <Button
             className="glass button-hover p-12 h-auto flex flex-col gap-4 font-bold"
             variant="outline"
@@ -34,6 +23,17 @@ const Energy = () => {
             <span className="text-2xl font-semibold">Painéis Solares</span>
             <span className="text-muted-foreground">
               Calcule a sua poupança<br />com energia solar
+            </span>
+          </Button>
+
+          <Button
+            className="glass button-hover p-12 h-auto flex flex-col gap-4 font-bold"
+            variant="outline"
+            onClick={() => navigate("/energy/provider")}
+          >
+            <span className="text-2xl font-semibold">Mudar de Comercializadora</span>
+            <span className="text-muted-foreground">
+              Compare tarifas e<br />encontre a melhor comercializadora
             </span>
           </Button>
         </div>
