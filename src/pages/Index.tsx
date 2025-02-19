@@ -35,8 +35,8 @@ const Index = () => {
         <div className="space-y-4">
           <div className="w-48 h-48 mx-auto mb-4 transition-all duration-300 hover:scale-105">
             <img 
-              src="/lovable-uploads/8d7244d3-c962-40e4-9cc9-75fdc4e509b9.png" 
-              alt="Logo" 
+              src="/lovable-uploads/c4e58cf3-4611-4542-9a70-4e17142c6b5e.png" 
+              alt="Jardim Solar Logo" 
               className="w-full h-full object-contain drop-shadow-lg"
             />
           </div>
