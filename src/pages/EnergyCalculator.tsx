@@ -24,8 +24,19 @@ const EnergyCalculator = () => {
   const [selectedType, setSelectedType] = useState<"residential" | "business">("residential");
 
   const powerOptions = [
-    "1.15", "2.30", "3.45", "4.60", "5.75", "6.90", "10.35", "13.80", 
-    "17.25", "20.70", "27.60", "34.50", "41.40"
+    { value: "1.15", label: "1,15 kVA" },
+    { value: "2.30", label: "2,30 kVA" },
+    { value: "3.45", label: "3,45 kVA" },
+    { value: "4.60", label: "4,60 kVA" },
+    { value: "5.75", label: "5,75 kVA" },
+    { value: "6.90", label: "6,90 kVA" },
+    { value: "10.35", label: "10,35 kVA" },
+    { value: "13.80", label: "13,80 kVA" },
+    { value: "17.25", label: "17,25 kVA" },
+    { value: "20.70", label: "20,70 kVA" },
+    { value: "27.60", label: "27,60 kVA" },
+    { value: "34.50", label: "34,50 kVA" },
+    { value: "41.40", label: "41,40 kVA" }
   ];
 
   const calculateSavings = () => {
@@ -95,13 +106,17 @@ const EnergyCalculator = () => {
           <div>
             <Label htmlFor="power">Potência Contratada (kVA):</Label>
             <Select value={power} onValueChange={setPower}>
-              <SelectTrigger>
+              <SelectTrigger className="h-10 text-base">
                 <SelectValue placeholder="Selecione a potência" />
               </SelectTrigger>
               <SelectContent>
                 {powerOptions.map((option) => (
-                  <SelectItem key={option} value={option}>
-                    {option} kVA
+                  <SelectItem 
+                    key={option.value} 
+                    value={option.value}
+                    className="text-base py-3 font-medium"
+                  >
+                    {option.label}
                   </SelectItem>
                 ))}
               </SelectContent>
