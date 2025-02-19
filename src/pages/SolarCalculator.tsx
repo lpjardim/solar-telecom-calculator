@@ -1,5 +1,4 @@
-
-import { useState } from "react";
+import { useState, useCallback } from "react";
 import { useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -13,9 +12,44 @@ import {
   Calculator,
   MapPin,
   Euro,
+  Check,
 } from "lucide-react";
+import AddressMap from "@/components/AddressMap";
 
 type CustomerType = "residential" | "business";
+
+const benefits = [
+  {
+    title: "Painéis Solares",
+    description: "Equipamentos de última geração",
+    included: true,
+  },
+  {
+    title: "Serviço de Instalação",
+    description: "Instalação profissional incluída",
+    included: true,
+  },
+  {
+    title: "Bateria",
+    description: "Armazenamento de energia",
+    included: true,
+  },
+  {
+    title: "Garantia 25 Anos",
+    description: "Garantia extendida",
+    included: true,
+  },
+  {
+    title: "6300 kWh",
+    description: "Produção anual",
+    included: true,
+  },
+  {
+    title: "Aplicação de Monitorização",
+    description: "Controle em tempo real",
+    included: true,
+  },
+];
 
 const SolarCalculator = () => {
   const navigate = useNavigate();
@@ -25,6 +59,9 @@ const SolarCalculator = () => {
   const [location, setLocation] = useState("");
   const [currentBill, setCurrentBill] = useState("");
   const [submitted, setSubmitted] = useState(false);
+  const [address, setAddress] = useState("");
+  const [showMap, setShowMap] = useState(false);
+  const [mapLocation, setMapLocation] = useState<{ lat: number; lng: number } | null>(null);
 
   const calculateSavings = () => {
     const consumption = Number(monthlyConsumption);
@@ -53,21 +90,56 @@ const SolarCalculator = () => {
     setSubmitted(true);
   };
 
-  if (submitted) {
+  const handleLocationSelect = (lat: number, lng: number) => {
+    setMapLocation({ lat, lng });
+  };
+
+  const handleAddressSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!address) {
+      toast.error("Por favor, insira seu endereço");
+      return;
+    }
+    setShowMap(true);
+  };
+
+  if (!showMap) {
     return (
       <div className="min-h-screen flex flex-col items-center justify-center p-6 page-transition">
-        <div className="max-w-xl w-full text-center space-y-8 glass p-8 rounded-2xl">
-          <h2 className="text-3xl font-bold text-primary">Excelente Escolha!</h2>
-          <p className="text-lg text-muted-foreground">
-            Parabéns por dar o primeiro passo em direção à energia solar! 
-            Nossa equipe entrará em contato em breve com sua proposta personalizada.
-          </p>
-          <Button
-            className="button-hover"
-            onClick={() => navigate("/")}
-          >
-            Voltar ao Início
-          </Button>
+        <div className="max-w-3xl w-full space-y-8">
+          <div className="text-center space-y-4">
+            <h1 className="text-4xl font-bold tracking-tight text-primary flex items-center justify-center gap-3">
+              <Sun className="h-10 w-10 text-yellow-500" />
+              Painéis Solares
+            </h1>
+            <p className="text-2xl font-semibold">
+              aos preços mais baixos em Portugal
+            </p>
+            <p className="text-lg text-muted-foreground">
+              ⚡ Assine já o seu contrato e poupe até 80% na fatura de eletricidade
+            </p>
+          </div>
+
+          <form onSubmit={handleAddressSubmit} className="glass p-8 rounded-2xl space-y-6">
+            <div className="space-y-2">
+              <label className="text-sm font-medium flex items-center gap-2">
+                <MapPin className="h-4 w-4" />
+                Verifique o seu endereço
+              </label>
+              <div className="flex gap-4">
+                <Input
+                  type="text"
+                  placeholder="Ex: Rua do Sol, 123"
+                  value={address}
+                  onChange={(e) => setAddress(e.target.value)}
+                  className="text-lg flex-1"
+                />
+                <Button type="submit" className="button-hover">
+                  Continuar
+                </Button>
+              </div>
+            </div>
+          </form>
         </div>
       </div>
     );
@@ -75,123 +147,35 @@ const SolarCalculator = () => {
 
   return (
     <div className="min-h-screen flex flex-col items-center justify-center p-6 page-transition">
-      <div className="max-w-3xl w-full space-y-8">
-        <div className="text-center space-y-4">
-          <h1 className="text-4xl font-bold tracking-tight text-primary flex items-center justify-center gap-3">
-            <Sun className="h-10 w-10 text-yellow-500" />
-            Simulador Solar
-          </h1>
-          <p className="text-lg text-muted-foreground">
-            Descubra quanto pode poupar com energia solar
-          </p>
+      <div className="max-w-4xl w-full space-y-12">
+        <div className="space-y-6">
+          <h2 className="text-2xl font-semibold text-center">
+            Arraste o mapa para fixar seu telhado
+          </h2>
+          <AddressMap onLocationSelect={handleLocationSelect} />
         </div>
 
         <div className="glass p-8 rounded-2xl space-y-8">
-          <div className="flex gap-4 justify-center">
-            <Button
-              type="button"
-              variant={customerType === "residential" ? "default" : "outline"}
-              className="button-hover flex gap-2 py-6 flex-1 max-w-[200px]"
-              onClick={() => setCustomerType("residential")}
-            >
-              <Home className="h-5 w-5" />
-              Residencial
-            </Button>
-            <Button
-              type="button"
-              variant={customerType === "business" ? "default" : "outline"}
-              className="button-hover flex gap-2 py-6 flex-1 max-w-[200px]"
-              onClick={() => setCustomerType("business")}
-            >
-              <Building2 className="h-5 w-5" />
-              Empresarial
-            </Button>
-          </div>
+          <h2 className="text-2xl font-semibold text-center">
+            Este é o seu sistema
+          </h2>
 
-          <div className="grid gap-6">
-            <div className="space-y-2">
-              <label className="text-sm font-medium flex items-center gap-2">
-                <Zap className="h-4 w-4" />
-                Consumo Mensal (kWh)
-              </label>
-              <Input
-                type="number"
-                placeholder="500"
-                value={monthlyConsumption}
-                onChange={(e) => setMonthlyConsumption(e.target.value)}
-                className="text-lg"
-              />
-            </div>
-
-            <div className="space-y-2">
-              <label className="text-sm font-medium flex items-center gap-2">
-                <Euro className="h-4 w-4" />
-                Valor Atual da Fatura (€)
-              </label>
-              <Input
-                type="number"
-                placeholder="100"
-                value={currentBill}
-                onChange={(e) => setCurrentBill(e.target.value)}
-                className="text-lg"
-              />
-            </div>
-
-            <div className="space-y-2">
-              <label className="text-sm font-medium flex items-center gap-2">
-                <MapPin className="h-4 w-4" />
-                Localização
-              </label>
-              <Input
-                type="text"
-                placeholder="Ex: Lisboa"
-                value={location}
-                onChange={(e) => setLocation(e.target.value)}
-                className="text-lg"
-              />
-            </div>
-
-            <div className="space-y-2">
-              <label className="text-sm font-medium flex items-center gap-2">
-                <Home className="h-4 w-4" />
-                Área Disponível no Telhado (m²)
-              </label>
-              <Input
-                type="number"
-                placeholder="50"
-                value={roofArea}
-                onChange={(e) => setRoofArea(e.target.value)}
-                className="text-lg"
-              />
-            </div>
-          </div>
-
-          {savings && (
-            <div className="bg-primary/5 p-6 rounded-xl space-y-6">
-              <div className="flex items-center gap-2 justify-center text-xl font-semibold text-primary">
-                <Calculator className="h-6 w-6" />
-                Estimativas Anuais
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {benefits.map((benefit, index) => (
+              <div
+                key={index}
+                className="p-4 rounded-xl bg-primary/5 space-y-2"
+              >
+                <h3 className="font-semibold flex items-center gap-2">
+                  <Check className="h-5 w-5 text-primary" />
+                  {benefit.title}
+                </h3>
+                <p className="text-sm text-muted-foreground">
+                  {benefit.description}
+                </p>
               </div>
-              <div className="grid gap-4">
-                <div className="flex justify-between items-center">
-                  <span>Produção Solar:</span>
-                  <span className="text-xl font-semibold text-primary">{savings.production} kWh</span>
-                </div>
-                <div className="flex justify-between items-center">
-                  <span>Poupança Mensal:</span>
-                  <span className="text-xl font-semibold text-primary">{savings.monthly}€</span>
-                </div>
-                <div className="flex justify-between items-center">
-                  <span>Poupança Anual:</span>
-                  <span className="text-xl font-semibold text-primary">{savings.annual}€</span>
-                </div>
-                <div className="flex justify-between items-center">
-                  <span>Redução de CO2:</span>
-                  <span className="text-xl font-semibold text-green-600">{savings.co2} kg</span>
-                </div>
-              </div>
-            </div>
-          )}
+            ))}
+          </div>
 
           <div className="flex gap-4 justify-center">
             <Button

@@ -3,11 +3,30 @@ import { useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { Select } from "@/components/ui/select";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
 import { toast } from "sonner";
 import { Home, Building2, Zap, Lightbulb, Euro, Calculator } from "lucide-react";
 
 type CustomerType = "residential" | "business";
+
+const contractedPowerOptions = [
+  "1.15",
+  "2.30",
+  "3.45",
+  "4.60",
+  "5.75",
+  "6.90",
+  "10.35",
+  "13.80",
+  "17.25",
+  "20.70"
+];
 
 const EnergyCalculator = () => {
   const navigate = useNavigate();
@@ -66,7 +85,8 @@ const EnergyCalculator = () => {
     <div className="min-h-screen flex flex-col items-center justify-center p-6 page-transition">
       <div className="max-w-3xl w-full space-y-8">
         <div className="text-center space-y-4">
-          <h1 className="text-4xl font-bold tracking-tight text-primary">
+          <h1 className="text-4xl font-bold tracking-tight text-primary flex items-center justify-center gap-3">
+            <Calculator className="h-8 w-8 text-primary" />
             Simulador de Poupança em Energia
           </h1>
           <p className="text-lg text-muted-foreground">
@@ -116,12 +136,18 @@ const EnergyCalculator = () => {
                 <Lightbulb className="h-4 w-4" />
                 Potência Contratada (kVA)
               </label>
-              <Input
-                type="number"
-                value={contractedPower}
-                onChange={(e) => setContractedPower(e.target.value)}
-                className="text-lg"
-              />
+              <Select value={contractedPower} onValueChange={setContractedPower}>
+                <SelectTrigger className="text-lg">
+                  <SelectValue placeholder="Selecione a potência" />
+                </SelectTrigger>
+                <SelectContent>
+                  {contractedPowerOptions.map((power) => (
+                    <SelectItem key={power} value={power}>
+                      {power} kVA
+                    </SelectItem>
+                  ))}
+                </SelectContent>
+              </Select>
             </div>
 
             <div className="space-y-2">
