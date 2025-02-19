@@ -141,6 +141,24 @@ const SolarCalculator = () => {
               </div>
             </div>
           </form>
+
+          <div className="flex gap-4 justify-center">
+            <Button
+              variant="ghost"
+              className="button-hover"
+              onClick={() => navigate(-1)}
+            >
+              Voltar
+            </Button>
+            <Button
+              variant="ghost"
+              className="button-hover"
+              onClick={() => navigate("/")}
+            >
+              <Home className="mr-2 h-4 w-4" />
+              Página Inicial
+            </Button>
+          </div>
         </div>
       </div>
     );
@@ -186,6 +204,14 @@ const SolarCalculator = () => {
               onClick={() => navigate(-1)}
             >
               Voltar
+            </Button>
+            <Button
+              variant="ghost"
+              className="button-hover"
+              onClick={() => navigate("/")}
+            >
+              <Home className="mr-2 h-4 w-4" />
+              Página Inicial
             </Button>
             <Button
               onClick={handleSubmit}

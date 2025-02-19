@@ -1,4 +1,3 @@
-
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
@@ -12,6 +11,7 @@ import {
   Percent,
   Timer,
   Send,
+  Home
 } from "lucide-react";
 
 const providers = [
@@ -145,13 +145,23 @@ const Telecom = () => {
           </div>
         )}
 
-        <Button
-          variant="ghost"
-          className="mt-8 button-hover"
-          onClick={() => navigate(-1)}
-        >
-          Voltar
-        </Button>
+        <div className="flex gap-4 justify-center">
+          <Button
+            variant="ghost"
+            className="mt-8 button-hover"
+            onClick={() => navigate(-1)}
+          >
+            Voltar
+          </Button>
+          <Button
+            variant="ghost"
+            className="mt-8 button-hover"
+            onClick={() => navigate("/")}
+          >
+            <Home className="mr-2 h-4 w-4" />
+            Página Inicial
+          </Button>
+        </div>
       </div>
     </div>
   );

@@ -1,4 +1,3 @@
-
 import { useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { Button } from "@/components/ui/button";
@@ -70,12 +69,22 @@ const EnergyCalculator = () => {
           <p className="text-lg text-muted-foreground">
             Agradecemos o seu interesse. Entraremos em contato em breve com a sua proposta personalizada.
           </p>
-          <Button
-            className="button-hover"
-            onClick={() => navigate("/")}
-          >
-            Voltar ao Início
-          </Button>
+          <div className="flex gap-4 justify-center">
+            <Button
+              className="button-hover"
+              onClick={() => navigate(-1)}
+            >
+              Voltar
+            </Button>
+            <Button
+              variant="ghost"
+              className="button-hover"
+              onClick={() => navigate("/")}
+            >
+              <Home className="mr-2 h-4 w-4" />
+              Página Inicial
+            </Button>
+          </div>
         </div>
       </div>
     );
@@ -196,6 +205,14 @@ const EnergyCalculator = () => {
               onClick={() => navigate(-1)}
             >
               Voltar
+            </Button>
+            <Button
+              variant="ghost"
+              className="button-hover"
+              onClick={() => navigate("/")}
+            >
+              <Home className="mr-2 h-4 w-4" />
+              Página Inicial
             </Button>
             <Button
               onClick={handleSubmit}
