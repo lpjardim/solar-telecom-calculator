@@ -33,8 +33,8 @@ const Index = () => {
             />
           </div>
           
-          <h1 className="text-4xl font-bold tracking-tight text-foreground">
-            Reduza os seus custos de <span className="bg-gradient-to-r from-primary/70 via-primary/85 to-primary bg-clip-text text-transparent">Energia</span> e <span className="bg-gradient-to-r from-primary/70 via-primary/85 to-primary bg-clip-text text-transparent">Telecomunicações</span>
+          <h1 className="text-4xl font-bold tracking-tight text-muted-foreground">
+            Reduza os seus custos de <span className="bg-gradient-to-r from-primary via-primary/85 to-primary/70 bg-clip-text text-transparent">Energia</span> e <span className="bg-gradient-to-r from-primary via-primary/85 to-primary/70 bg-clip-text text-transparent">Telecomunicações</span>
           </h1>
           <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
             Conheça as formas de otimizar as suas despesas e calcule a sua poupança
@@ -43,7 +43,7 @@ const Index = () => {
 
         <Button
           size="lg"
-          className="button-hover text-lg px-8 py-6 font-bold shadow-lg hover:shadow-xl transition-all duration-300 bg-gradient-to-r from-primary/90 via-primary to-primary/90 hover:from-primary hover:to-primary"
+          className="button-hover text-lg px-8 py-6 font-bold shadow-lg hover:shadow-xl transition-all duration-300 bg-gradient-to-r from-primary to-primary/90 hover:from-primary hover:to-primary"
           onMouseEnter={() => setIsHovered(true)}
           onMouseLeave={() => setIsHovered(false)}
           onClick={() => navigate("/services")}
