@@ -16,23 +16,23 @@ const Energy = () => {
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-2xl mx-auto">
           <Button
-            className="glass button-hover p-12 h-auto flex flex-col gap-4 font-bold"
+            className="glass button-hover min-h-[200px] h-auto flex flex-col gap-4 p-8"
             variant="outline"
             onClick={() => navigate("/energy/provider")}
           >
-            <span className="text-2xl font-semibold">Mudar de Comercializadora</span>
-            <span className="text-muted-foreground">
+            <span className="text-xl font-semibold">Mudar de Comercializadora</span>
+            <span className="text-muted-foreground text-sm leading-relaxed">
               Compare tarifas e encontre a melhor comercializadora
             </span>
           </Button>
 
           <Button
-            className="glass button-hover p-12 h-auto flex flex-col gap-4 font-bold"
+            className="glass button-hover min-h-[200px] h-auto flex flex-col gap-4 p-8"
             variant="outline"
             onClick={() => navigate("/energy/solar")}
           >
-            <span className="text-2xl font-semibold">Painéis Solares</span>
-            <span className="text-muted-foreground">
+            <span className="text-xl font-semibold">Painéis Solares</span>
+            <span className="text-muted-foreground text-sm leading-relaxed">
               Calcule a sua poupança com energia solar
             </span>
           </Button>
