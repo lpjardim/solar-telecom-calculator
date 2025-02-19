@@ -13,7 +13,7 @@ const Services = () => {
       <div className="max-w-4xl w-full text-center space-y-8">
         <h1 className="text-4xl font-bold tracking-tight mb-12 text-primary flex items-center justify-center gap-3">
           <ListChecks className="h-8 w-8 text-primary" />
-          Escolha o Serviço
+          Escolha a Área
         </h1>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-2xl mx-auto">
@@ -24,7 +24,7 @@ const Services = () => {
           >
             <span className="text-2xl font-semibold">Energias</span>
             <span className="text-muted-foreground">
-              Otimize os seus custos de energia
+              Otimize os seus custos de energia e/ou explore soluções solares
             </span>
           </Button>
 
@@ -35,7 +35,7 @@ const Services = () => {
           >
             <span className="text-2xl font-semibold">Telecomunicações</span>
             <span className="text-muted-foreground">
-              Encontre o melhor plano para si
+              Compara planos e obtenha a melhor oferta para as suas necessidades
             </span>
           </Button>
         </div>

@@ -22,7 +22,7 @@ const Energy = () => {
           >
             <span className="text-2xl font-semibold">Mudar de Comercializadora</span>
             <span className="text-muted-foreground">
-              Compare e escolha a melhor comercializadora
+              Compare tarifas e encontre a melhor comercializadora
             </span>
           </Button>
 
