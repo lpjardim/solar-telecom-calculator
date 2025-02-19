@@ -1,7 +1,7 @@
 
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { Facebook, Instagram, Linkedin, Sun, Moon } from "lucide-react";
+import { Facebook, Instagram, Linkedin, Sun, Moon, Leaf } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useTheme } from "@/components/theme-provider";
 
@@ -31,7 +31,8 @@ const Index = () => {
             </div>
           </div>
           
-          <h1 className="text-4xl font-bold tracking-tight">
+          <h1 className="text-4xl font-bold tracking-tight text-primary flex flex-col items-center gap-3">
+            <Leaf className="h-8 w-8 text-primary" />
             Otimize os Seus Custos de Energia e Telecomunicações
           </h1>
           <p className="text-lg text-muted-foreground max-w-2xl mx-auto">

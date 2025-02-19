@@ -2,6 +2,7 @@
 import { useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { useTheme } from "@/components/theme-provider";
+import { ListChecks } from "lucide-react";
 
 const Services = () => {
   const navigate = useNavigate();
@@ -10,7 +11,8 @@ const Services = () => {
   return (
     <div className="min-h-screen flex flex-col items-center justify-center p-6 page-transition">
       <div className="max-w-4xl w-full text-center space-y-8">
-        <h1 className="text-4xl font-bold tracking-tight mb-12">
+        <h1 className="text-4xl font-bold tracking-tight mb-12 text-primary flex items-center justify-center gap-3">
+          <ListChecks className="h-8 w-8 text-primary" />
           Escolha o Serviço
         </h1>
 
