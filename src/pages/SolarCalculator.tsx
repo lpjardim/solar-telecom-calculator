@@ -1,4 +1,3 @@
-
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
@@ -29,15 +28,19 @@ type CustomerType = "residential" | "business";
 type SystemOptions = {
   panels: number;
   hasBattery: boolean;
-  production: "6300" | "8400" | "10500";
+  production: number;
   email: string;
 };
 
 const initialSystemOptions: SystemOptions = {
   panels: 8,
   hasBattery: true,
-  production: "6300",
+  production: 6300,
   email: "",
+};
+
+const calculateAnnualProduction = (panels: number): number => {
+  return panels * 787.5;
 };
 
 const SolarCalculator = () => {
@@ -46,7 +49,10 @@ const SolarCalculator = () => {
   const [address, setAddress] = useState("");
   const [showMap, setShowMap] = useState(false);
   const [mapLocation, setMapLocation] = useState<{ lat: number; lng: number } | null>(null);
-  const [systemOptions, setSystemOptions] = useState<SystemOptions>(initialSystemOptions);
+  const [systemOptions, setSystemOptions] = useState<SystemOptions>({
+    ...initialSystemOptions,
+    production: calculateAnnualProduction(initialSystemOptions.panels),
+  });
   const [submitted, setSubmitted] = useState(false);
 
   const handleLocationSelect = (lat: number, lng: number) => {
@@ -77,10 +83,18 @@ const SolarCalculator = () => {
     key: K,
     value: SystemOptions[K]
   ) => {
-    setSystemOptions((prev) => ({
-      ...prev,
-      [key]: value,
-    }));
+    setSystemOptions((prev) => {
+      const newOptions = {
+        ...prev,
+        [key]: value,
+      };
+      
+      if (key === 'panels') {
+        newOptions.production = calculateAnnualProduction(value as number);
+      }
+      
+      return newOptions;
+    });
   };
 
   if (submitted) {
@@ -303,9 +317,7 @@ const SolarCalculator = () => {
             </div>
 
             {/* Produção Anual */}
-            <div className="p-4 rounded-xl bg
-
--primary/5 space-y-2">
+            <div className="p-4 rounded-xl bg-primary/5 space-y-2">
               <h3 className="font-semibold flex items-center gap-2">
                 <Sparkles className="h-5 w-5 text-primary" />
                 Produção Anual
@@ -313,19 +325,9 @@ const SolarCalculator = () => {
               <p className="text-sm text-muted-foreground mb-4">
                 Estimativa de produção
               </p>
-              <Select
-                value={systemOptions.production}
-                onValueChange={(value) => updateSystemOption("production", value as "6300" | "8400" | "10500")}
-              >
-                <SelectTrigger>
-                  <SelectValue />
-                </SelectTrigger>
-                <SelectContent className="bg-background border shadow-lg">
-                  <SelectItem value="6300">6300 kWh/ano</SelectItem>
-                  <SelectItem value="8400">8400 kWh/ano</SelectItem>
-                  <SelectItem value="10500">10500 kWh/ano</SelectItem>
-                </SelectContent>
-              </Select>
+              <div className="text-primary font-medium">
+                {systemOptions.production.toLocaleString('pt-PT')} kWh/ano
+              </div>
             </div>
 
             {/* Poupança Estimada */}
@@ -338,8 +340,7 @@ const SolarCalculator = () => {
                 Até 80% na fatura
               </p>
               <p className="text-lg font-semibold text-primary">
-                {systemOptions.production === "6300" ? "3.780€" : 
-                 systemOptions.production === "8400" ? "5.040€" : "6.300€"} /ano
+                {Math.round(systemOptions.production * 0.60).toLocaleString('pt-PT')}€ /ano
               </p>
             </div>
           </div>
