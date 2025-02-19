@@ -16,31 +16,31 @@ const Services = () => {
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-2xl mx-auto">
           <Button
-            className="glass button-hover p-12 h-auto flex flex-col gap-4"
+            className="glass button-hover p-12 h-auto flex flex-col gap-4 font-bold"
             variant="outline"
             onClick={() => navigate("/energy")}
           >
             <span className="text-2xl font-semibold">Energias</span>
             <span className="text-muted-foreground">
-              Otimize seus custos de energia
+              Otimize os seus custos de energia
             </span>
           </Button>
 
           <Button
-            className="glass button-hover p-12 h-auto flex flex-col gap-4"
+            className="glass button-hover p-12 h-auto flex flex-col gap-4 font-bold"
             variant="outline"
             onClick={() => navigate("/telecom")}
           >
             <span className="text-2xl font-semibold">Telecomunicações</span>
             <span className="text-muted-foreground">
-              Encontre o melhor plano para você
+              Encontre o melhor plano para si
             </span>
           </Button>
         </div>
 
         <Button
           variant="ghost"
-          className="mt-8 button-hover"
+          className="mt-8 button-hover font-bold"
           onClick={() => navigate(-1)}
         >
           Voltar

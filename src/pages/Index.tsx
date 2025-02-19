@@ -26,28 +26,27 @@ const Index = () => {
       <div className="flex-1 flex flex-col items-center justify-center gap-12 max-w-4xl w-full text-center">
         <div className="space-y-6">
           <div className="w-48 h-48 mx-auto mb-8">
-            {/* Replace with your logo */}
             <div className="w-full h-full rounded-full bg-primary/10 flex items-center justify-center text-primary text-4xl font-bold">
               LOGO
             </div>
           </div>
           
           <h1 className="text-4xl font-bold tracking-tight">
-            Optimize Your Energy & Telecom Costs
+            Otimize os Seus Custos de Energia e Telecomunicações
           </h1>
           <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-            Calculate your potential savings with our advanced cost simulator
+            Calcule a sua poupança com o nosso simulador avançado de custos
           </p>
         </div>
 
         <Button
           size="lg"
-          className="button-hover text-lg px-8 py-6"
+          className="button-hover text-lg px-8 py-6 font-bold"
           onMouseEnter={() => setIsHovered(true)}
           onMouseLeave={() => setIsHovered(false)}
           onClick={() => navigate("/services")}
         >
-          Start Simulation
+          Iniciar Simulação
         </Button>
 
         <div className="flex gap-6 mt-8">
@@ -76,7 +75,7 @@ const Index = () => {
       </div>
 
       <div className="mt-12 text-sm text-muted-foreground">
-        Authorized EDP Agent • Trusted by Customers
+        Agente Autorizado EDP • A Sua Escolha de Confiança
       </div>
     </div>
   );

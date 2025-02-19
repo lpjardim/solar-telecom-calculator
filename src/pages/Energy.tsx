@@ -14,7 +14,7 @@ const Energy = () => {
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-2xl mx-auto">
           <Button
-            className="glass button-hover p-12 h-auto flex flex-col gap-4"
+            className="glass button-hover p-12 h-auto flex flex-col gap-4 font-bold"
             variant="outline"
             onClick={() => navigate("/energy/provider")}
           >
@@ -25,20 +25,20 @@ const Energy = () => {
           </Button>
 
           <Button
-            className="glass button-hover p-12 h-auto flex flex-col gap-4"
+            className="glass button-hover p-12 h-auto flex flex-col gap-4 font-bold"
             variant="outline"
             onClick={() => navigate("/energy/solar")}
           >
             <span className="text-2xl font-semibold">Painéis Solares</span>
             <span className="text-muted-foreground">
-              Calcule sua economia com energia solar
+              Calcule a sua poupança com energia solar
             </span>
           </Button>
         </div>
 
         <Button
           variant="ghost"
-          className="mt-8 button-hover"
+          className="mt-8 button-hover font-bold"
           onClick={() => navigate(-1)}
         >
           Voltar
