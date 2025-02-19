@@ -1,3 +1,4 @@
+
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
@@ -160,19 +161,10 @@ const SolarCalculator = () => {
     return (
       <div className="min-h-screen flex flex-col items-center justify-center p-6 page-transition">
         <div className="max-w-3xl w-full space-y-8">
-          <div className="flex flex-col items-center gap-6">
-            <div className="w-48 h-48 relative">
-              <img 
-                src="/lovable-uploads/e016c0dd-e6d2-4439-ab48-e9e0b36956f4.png" 
-                alt="Jardim Solar Logo" 
-                className="w-full h-full object-contain drop-shadow-lg"
-              />
-            </div>
-            <h1 className="text-4xl font-bold tracking-tight text-primary flex items-center justify-center gap-3">
-              <Sun className="h-16 w-16 text-yellow-500" />
-              Painéis Solares
-            </h1>
-          </div>
+          <h1 className="text-4xl font-bold tracking-tight mb-12 text-primary flex items-center justify-center gap-3">
+            <Sun className="h-16 w-16 text-yellow-500" />
+            Painéis Solares
+          </h1>
 
           <div className="text-center space-y-4">
             <p className="text-2xl font-semibold">
