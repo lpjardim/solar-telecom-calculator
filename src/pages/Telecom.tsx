@@ -1,3 +1,4 @@
+
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
@@ -52,7 +53,7 @@ const Telecom = () => {
     toast.success(
       <div className="flex flex-col gap-2">
         <span className="font-semibold">Ótima escolha!</span>
-        <span>Está a um passo de poupar na sua fatura.</span>
+        <span>Está a um passo de ter um melhor serviço.</span>
       </div>,
       {
         duration: 5000,
@@ -69,11 +70,16 @@ const Telecom = () => {
       <div className="max-w-4xl w-full text-center space-y-12">
         <div className="space-y-4">
           <h1 className="text-4xl font-bold tracking-tight text-primary">
-            Reduza a sua Fatura de Telecomunicações
+            Melhore o Seu Serviço de Telecomunicações
           </h1>
-          <p className="text-xl text-muted-foreground">
-            Em apenas 2 minutos, descubra quanto pode poupar
-          </p>
+          <div className="space-y-2">
+            <p className="text-xl text-muted-foreground">
+              Comece a poupar ou melhore o seu serviço!
+            </p>
+            <p className="text-lg text-muted-foreground">
+              Peça uma proposta personalizada para si em apenas 2 minutos
+            </p>
+          </div>
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-4xl mx-auto">
@@ -120,7 +126,7 @@ const Telecom = () => {
             <div className="glass p-8 rounded-2xl space-y-6">
               <div className="flex items-center justify-center gap-3 text-2xl font-semibold text-primary">
                 <MessageSquare className="h-8 w-8" />
-                <span>Envie SMS e Comece a Poupar</span>
+                <span>Envie SMS e Melhore o Seu Serviço</span>
               </div>
               
               <div className="space-y-4">
