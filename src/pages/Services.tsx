@@ -24,7 +24,7 @@ const Services = () => {
           >
             <span className="text-2xl font-semibold">Energias</span>
             <span className="text-muted-foreground">
-              Otimize os seus custos<br />e explore soluções solares
+              Reduza os seus custos<br />e explore soluções solares
             </span>
           </Button>
 
