@@ -1,5 +1,5 @@
 
-import { useState, useCallback, useMemo } from 'react';
+import { useState, useCallback } from 'react';
 import { GoogleMap, useJsApiLoader, Marker } from '@react-google-maps/api';
 
 const containerStyle = {
@@ -15,7 +15,7 @@ const center = {
 const mapOptions = {
   id: 'google-map-script',
   googleMapsApiKey: '',  // Chave removida para evitar conflito
-  libraries: ['places']
+  libraries: ['places'] as ['places']
 };
 
 interface AddressMapProps {
@@ -52,3 +52,4 @@ const AddressMap = ({ onLocationSelect }: AddressMapProps) => {
 };
 
 export default AddressMap;
+
