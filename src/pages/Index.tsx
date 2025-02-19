@@ -83,7 +83,7 @@ const Index = () => {
         </div>
       </div>
 
-      <div className="mt-12 text-sm text-muted-foreground">
+      <div className="mt-6 mb-4 px-4 text-sm text-muted-foreground md:mt-12 md:mb-0">
         Agente Autorizado EDP • A Sua Escolha de Confiança
       </div>
     </div>
