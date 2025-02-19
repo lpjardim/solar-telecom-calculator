@@ -1,7 +1,6 @@
-
 import { useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
-import { Building2 } from "lucide-react";
+import { Building2, Home } from "lucide-react";
 
 const providers = [
   { id: "edp", name: "EDP" },
@@ -36,13 +35,29 @@ const EnergyProvider = () => {
           ))}
         </div>
 
-        <Button
-          variant="ghost"
-          className="mt-8 button-hover font-bold"
-          onClick={() => navigate(-1)}
-        >
-          Voltar
-        </Button>
+        <div className="flex flex-col gap-4 items-center">
+          <Button
+            className="button-hover bg-primary text-white"
+            onClick={() => navigate("/energy/calculator")}
+          >
+            Solicitar Proposta
+          </Button>
+          <Button
+            variant="ghost"
+            className="button-hover"
+            onClick={() => navigate(-1)}
+          >
+            Voltar
+          </Button>
+          <Button
+            variant="ghost"
+            className="button-hover"
+            onClick={() => navigate("/")}
+          >
+            <Home className="mr-2 h-4 w-4" />
+            Página Inicial
+          </Button>
+        </div>
       </div>
     </div>
   );

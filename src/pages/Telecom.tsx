@@ -154,7 +154,7 @@ const Telecom = () => {
           </div>
         )}
 
-        <div className="flex flex-wrap gap-4 justify-center px-4">
+        <div className="flex flex-col gap-4 items-center">
           <Button
             className="button-hover bg-primary text-white"
             onClick={handleSubmit}

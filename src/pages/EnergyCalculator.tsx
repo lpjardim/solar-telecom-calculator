@@ -4,6 +4,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Building2 } from "lucide-react";
+import { Home } from "lucide-react";
 
 const EnergyCalculator = () => {
   const navigate = useNavigate();
@@ -68,17 +69,29 @@ const EnergyCalculator = () => {
           </div>
         </div>
 
-        <Button className="w-full button-hover" onClick={calculateConsumption}>
-          Calcular Consumo
-        </Button>
-
-        <Button
-          variant="ghost"
-          className="mt-8 button-hover font-bold"
-          onClick={() => navigate(-1)}
-        >
-          Voltar
-        </Button>
+        <div className="flex flex-col gap-4 items-center">
+          <Button
+            className="button-hover bg-primary text-white"
+            onClick={calculateConsumption}
+          >
+            Solicitar Proposta
+          </Button>
+          <Button
+            variant="ghost"
+            className="button-hover"
+            onClick={() => navigate(-1)}
+          >
+            Voltar
+          </Button>
+          <Button
+            variant="ghost"
+            className="button-hover"
+            onClick={() => navigate("/")}
+          >
+            <Home className="mr-2 h-4 w-4" />
+            Página Inicial
+          </Button>
+        </div>
       </div>
     </div>
   );

@@ -211,7 +211,7 @@ const SolarCalculator = () => {
             </Button>
             <Button
               variant="ghost"
-              className="button-hover"
+2              className="button-hover"
               onClick={() => navigate("/")}
             >
               <Home className="mr-2 h-4 w-4" />
