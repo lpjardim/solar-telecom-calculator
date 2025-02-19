@@ -1,4 +1,3 @@
-
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
@@ -147,31 +146,30 @@ const Telecom = () => {
                 </div>
 
                 <p className="text-sm text-muted-foreground">
-                  Após enviar o SMS, nossa equipe entrará em contato em até 2 horas
-                  com sua proposta personalizada.
+                  Após enviar o SMS, a nossa equipa entrará em contato o mais brevemente possível com sua proposta personalizada.
                 </p>
               </div>
             </div>
           </div>
         )}
 
-        <div className="flex gap-4 justify-center">
+        <div className="flex flex-wrap gap-4 justify-center px-4">
           <Button
-            className="mt-8 button-hover bg-primary text-white"
+            className="button-hover bg-primary text-white"
             onClick={handleSubmit}
           >
             Solicitar Proposta
           </Button>
           <Button
             variant="ghost"
-            className="mt-8 button-hover"
+            className="button-hover"
             onClick={() => navigate(-1)}
           >
             Voltar
           </Button>
           <Button
             variant="ghost"
-            className="mt-8 button-hover"
+            className="button-hover"
             onClick={() => navigate("/")}
           >
             <Home className="mr-2 h-4 w-4" />
