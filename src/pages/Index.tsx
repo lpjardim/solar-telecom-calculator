@@ -26,9 +26,11 @@ const Index = () => {
       <div className="flex-1 flex flex-col items-center justify-center gap-12 max-w-4xl w-full text-center">
         <div className="space-y-6">
           <div className="w-48 h-48 mx-auto mb-8">
-            <div className="w-full h-full rounded-full bg-primary/10 flex items-center justify-center text-primary text-4xl font-bold">
-              LOGO
-            </div>
+            <img 
+              src="/lovable-uploads/c4e58cf3-4611-4542-9a70-4e17142c6b5e.png" 
+              alt="Jardim Solar Logo" 
+              className="w-full h-full object-contain"
+            />
           </div>
           
           <h1 className="text-4xl font-bold tracking-tight text-primary flex flex-col items-center gap-3">
