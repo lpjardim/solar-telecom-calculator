@@ -211,7 +211,7 @@ const SolarCalculator = () => {
             </Button>
             <Button
               variant="ghost"
-              className="button-hover"
+2              className="button-hover"
               onClick={() => navigate("/")}
             >
               <Home className="mr-2 h-4 w-4" />
@@ -226,10 +226,7 @@ const SolarCalculator = () => {
   return (
     <div className="min-h-screen flex flex-col items-center justify-center p-6 page-transition">
       <div className="max-w-4xl w-full space-y-12">
-        <div className="space-y-6">
-          <h2 className="text-2xl font-semibold text-center">
-            Arraste o mapa para fixar seu telhado
-          </h2>
+        <div>
           <AddressMap onLocationSelect={handleLocationSelect} />
         </div>
 
