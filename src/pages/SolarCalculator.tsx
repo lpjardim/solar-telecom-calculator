@@ -1,4 +1,3 @@
-
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
@@ -22,7 +21,6 @@ import {
   Lightbulb,
   Mail,
 } from "lucide-react";
-import AddressMap from "@/components/AddressMap";
 
 type CustomerType = "residential" | "business";
 
@@ -49,16 +47,11 @@ const SolarCalculator = () => {
   const [customerType, setCustomerType] = useState<CustomerType>("residential");
   const [address, setAddress] = useState("");
   const [showMap, setShowMap] = useState(false);
-  const [mapLocation, setMapLocation] = useState<{ lat: number; lng: number } | null>(null);
   const [systemOptions, setSystemOptions] = useState<SystemOptions>({
     ...initialSystemOptions,
     production: calculateAnnualProduction(initialSystemOptions.panels),
   });
   const [submitted, setSubmitted] = useState(false);
-
-  const handleLocationSelect = (lat: number, lng: number) => {
-    setMapLocation({ lat, lng });
-  };
 
   const handleAddressSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -212,7 +205,7 @@ const SolarCalculator = () => {
             </Button>
             <Button
               variant="ghost"
-              className="button-hover"
+2              className="button-hover"
               onClick={() => navigate("/")}
             >
               <Home className="mr-2 h-4 w-4" />
@@ -227,10 +220,6 @@ const SolarCalculator = () => {
   return (
     <div className="min-h-screen flex flex-col items-center justify-center p-6 page-transition">
       <div className="max-w-4xl w-full space-y-12">
-        <div>
-          <AddressMap onLocationSelect={handleLocationSelect} />
-        </div>
-
         <div className="glass p-8 rounded-2xl space-y-8">
           <h2 className="text-2xl font-semibold text-center">
             Personalize o seu sistema
