@@ -33,7 +33,7 @@ const Index = () => {
           
           <h1 className="text-4xl font-bold tracking-tight text-primary flex flex-col items-center gap-3">
             <Leaf className="h-8 w-8 text-primary" />
-            Reduza os seus custos de energia e telecomunicações
+            Reduza os seus custos de Energia e Telecomunicações
           </h1>
           <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
             Conheça as formas de otimizar as suas despesas e calcule a poupança
