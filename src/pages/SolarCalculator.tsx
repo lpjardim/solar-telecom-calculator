@@ -168,7 +168,7 @@ const SolarCalculator = () => {
         <div className="max-w-3xl w-full space-y-8">
           <h1 className="text-4xl font-bold tracking-tight mb-12 text-primary flex items-center justify-center gap-3">
             <Sun className="h-16 w-16 text-yellow-500" />
-            Simulador Solar
+            Painéis Solares
           </h1>
 
           <div className="text-center space-y-4">
