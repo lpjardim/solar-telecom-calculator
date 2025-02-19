@@ -33,7 +33,7 @@ const Energy = () => {
           >
             <span className="text-2xl font-semibold">Painéis Solares</span>
             <span className="text-muted-foreground">
-              Calcule a sua poupança com energia solar
+              Calcule a sua poupança<br />com energia solar
             </span>
           </Button>
         </div>
