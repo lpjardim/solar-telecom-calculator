@@ -98,12 +98,12 @@ const EnergyCalculator = () => {
               <SelectTrigger className="h-10 text-base">
                 <SelectValue placeholder="Selecione a potência" />
               </SelectTrigger>
-              <SelectContent className="bg-white border-2 shadow-lg">
+              <SelectContent className="bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 shadow-sm">
                 {powerOptions.map((option) => (
                   <SelectItem 
                     key={option} 
                     value={option}
-                    className="text-base py-3 hover:bg-gray-100"
+                    className="text-base py-3 hover:bg-gray-100 dark:hover:bg-gray-700"
                   >
                     {option} kVA
                   </SelectItem>
