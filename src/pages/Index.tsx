@@ -11,7 +11,7 @@ const Index = () => {
   const [isHovered, setIsHovered] = useState(false);
 
   return (
-    <div className="min-h-screen flex flex-col items-center justify-between p-6 page-transition">
+    <div className="min-h-screen flex flex-col items-center justify-between p-6 bg-gradient-to-br from-background to-secondary/20 page-transition">
       <div className="absolute top-6 right-6 flex items-center gap-4">
         <Button
           variant="ghost"
@@ -25,15 +25,15 @@ const Index = () => {
 
       <div className="flex-1 flex flex-col items-center justify-center gap-12 max-w-4xl w-full text-center">
         <div className="space-y-6">
-          <div className="w-64 h-64 mx-auto mb-8">
+          <div className="w-64 h-64 mx-auto mb-8 transition-all duration-300 hover:scale-105">
             <img 
               src="/lovable-uploads/c4e58cf3-4611-4542-9a70-4e17142c6b5e.png" 
               alt="Jardim Solar Logo" 
-              className="w-full h-full object-contain"
+              className="w-full h-full object-contain drop-shadow-lg"
             />
           </div>
           
-          <h1 className="text-4xl font-bold tracking-tight text-primary">
+          <h1 className="text-4xl font-bold tracking-tight text-primary bg-gradient-to-r from-primary to-primary/80 bg-clip-text text-transparent">
             Reduza os seus custos de Energia e Telecomunicações
           </h1>
           <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
@@ -43,7 +43,7 @@ const Index = () => {
 
         <Button
           size="lg"
-          className="button-hover text-lg px-8 py-6 font-bold"
+          className="button-hover text-lg px-8 py-6 font-bold shadow-lg hover:shadow-xl transition-all duration-300"
           onMouseEnter={() => setIsHovered(true)}
           onMouseLeave={() => setIsHovered(false)}
           onClick={() => navigate("/services")}
