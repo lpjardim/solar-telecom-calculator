@@ -6,6 +6,13 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Building2, Home } from "lucide-react";
 import { Textarea } from "@/components/ui/textarea";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
 
 const EnergyCalculator = () => {
   const navigate = useNavigate();
@@ -15,6 +22,11 @@ const EnergyCalculator = () => {
   const [email, setEmail] = useState("");
   const [observations, setObservations] = useState("");
   const [selectedType, setSelectedType] = useState<"residential" | "business">("residential");
+
+  const powerOptions = [
+    "1.15", "2.30", "3.45", "4.60", "5.75", "6.90", "10.35", "13.80", 
+    "17.25", "20.70", "27.60", "34.50", "41.40"
+  ];
 
   const calculateSavings = () => {
     const consumptionValue = parseFloat(consumption);
@@ -82,12 +94,18 @@ const EnergyCalculator = () => {
           </div>
           <div>
             <Label htmlFor="power">Potência Contratada (kVA):</Label>
-            <Input
-              type="number"
-              id="power"
-              value={power}
-              onChange={(e) => setPower(e.target.value)}
-            />
+            <Select value={power} onValueChange={setPower}>
+              <SelectTrigger>
+                <SelectValue placeholder="Selecione a potência" />
+              </SelectTrigger>
+              <SelectContent>
+                {powerOptions.map((option) => (
+                  <SelectItem key={option} value={option}>
+                    {option} kVA
+                  </SelectItem>
+                ))}
+              </SelectContent>
+            </Select>
           </div>
           <div>
             <Label htmlFor="rate">Tarifa Atual (€/kWh):</Label>
