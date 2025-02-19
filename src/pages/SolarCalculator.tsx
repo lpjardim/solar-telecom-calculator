@@ -210,7 +210,7 @@ const SolarCalculator = () => {
             </Button>
             <Button
               variant="ghost"
-              className="button-hover"
+2              className="button-hover"
               onClick={() => navigate("/")}
             >
               <Home className="mr-2 h-4 w-4" />
@@ -349,7 +349,7 @@ const SolarCalculator = () => {
           <div className="space-y-2">
             <label className="text-sm font-medium flex items-center gap-2">
               <Mail className="h-4 w-4" />
-              Email *
+              Email
             </label>
             <Input
               type="email"
