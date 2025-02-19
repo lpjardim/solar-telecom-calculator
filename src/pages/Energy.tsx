@@ -20,9 +20,9 @@ const Energy = () => {
             variant="outline"
             onClick={() => navigate("/energy/provider")}
           >
-            <span className="text-2xl font-semibold">Mudar de<br />Comercializadora</span>
+            <span className="text-2xl font-semibold">Mudar de Comercializadora</span>
             <span className="text-muted-foreground">
-              Compare tarifas e encontre a melhor comercializadora
+              Compare tarifas e<br />encontre a melhor comercializadora
             </span>
           </Button>
 
