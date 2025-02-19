@@ -1,3 +1,4 @@
+
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
@@ -97,7 +98,7 @@ const Telecom = () => {
         </div>
 
         <div className="space-y-6">
-          <h2 className="text-2xl font-semibold">
+          <h2 className="text-2xl font-semibold bg-gradient-to-r from-primary to-primary/60 bg-clip-text text-transparent">
             Qual é o seu operador atual?
           </h2>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 max-w-3xl mx-auto">
@@ -125,8 +126,8 @@ const Telecom = () => {
         {showInstructions && (
           <div className="animate-in fade-in slide-in-from-bottom-4 duration-500 max-w-2xl mx-auto">
             <div className="glass p-8 rounded-2xl space-y-6">
-              <div className="flex items-center justify-center gap-3 text-2xl font-semibold text-primary">
-                <MessageSquare className="h-8 w-8" />
+              <div className="flex items-center justify-center gap-3 text-2xl font-semibold bg-gradient-to-r from-primary to-primary/60 bg-clip-text text-transparent">
+                <MessageSquare className="h-8 w-8 text-primary" />
                 <span>Solicitar Proposta</span>
               </div>
               
