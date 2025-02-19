@@ -211,7 +211,7 @@ const SolarCalculator = () => {
             </Button>
             <Button
               variant="ghost"
-2              className="button-hover"
+              className="button-hover"
               onClick={() => navigate("/")}
             >
               <Home className="mr-2 h-4 w-4" />
@@ -362,7 +362,7 @@ const SolarCalculator = () => {
             />
           </div>
 
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
+          <div className="flex flex-col gap-4 items-center">
             <Button
               onClick={handleSubmit}
               className="button-hover bg-primary text-white"
