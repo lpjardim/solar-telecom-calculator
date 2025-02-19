@@ -3,8 +3,9 @@ import { useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { Textarea } from "@/components/ui/textarea";
+import { Select } from "@/components/ui/select";
 import { toast } from "sonner";
+import { Home, Building2, Zap, Lightbulb, Euro, Calculator } from "lucide-react";
 
 type CustomerType = "residential" | "business";
 
@@ -12,19 +13,33 @@ const EnergyCalculator = () => {
   const navigate = useNavigate();
   const { providerId } = useParams();
   const [customerType, setCustomerType] = useState<CustomerType>("residential");
-  const [monthlyBill, setMonthlyBill] = useState("");
-  const [observations, setObservations] = useState("");
+  const [monthlyConsumption, setMonthlyConsumption] = useState("");
+  const [contractedPower, setContractedPower] = useState("6.90");
+  const [currentRate, setCurrentRate] = useState("0.1529");
   const [submitted, setSubmitted] = useState(false);
+
+  const calculateSavings = () => {
+    const consumption = Number(monthlyConsumption);
+    const rate = Number(currentRate);
+    const currentBill = consumption * rate;
+    const estimatedSavings = currentBill * 0.25; // 25% savings
+    return {
+      monthly: estimatedSavings.toFixed(2),
+      annual: (estimatedSavings * 12).toFixed(2),
+      percentage: "25.0",
+    };
+  };
+
+  const savings = monthlyConsumption ? calculateSavings() : null;
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     
-    if (!monthlyBill) {
-      toast.error("Por favor, insira o valor da sua fatura mensal");
+    if (!monthlyConsumption) {
+      toast.error("Por favor, insira o seu consumo mensal");
       return;
     }
 
-    const savingsEstimate = Number(monthlyBill) * 0.15; // 15% estimated savings
     setSubmitted(true);
   };
 
@@ -49,62 +64,105 @@ const EnergyCalculator = () => {
 
   return (
     <div className="min-h-screen flex flex-col items-center justify-center p-6 page-transition">
-      <div className="max-w-2xl w-full space-y-8">
+      <div className="max-w-3xl w-full space-y-8">
         <div className="text-center space-y-4">
-          <h1 className="text-4xl font-bold tracking-tight">
-            Simulador de Economia
+          <h1 className="text-4xl font-bold tracking-tight text-primary">
+            Simulador de Poupança em Energia
           </h1>
           <p className="text-lg text-muted-foreground">
-            Preencha os dados abaixo para calcular sua economia
+            Fornecedor atual: {providerId?.toUpperCase()}
           </p>
         </div>
 
-        <form onSubmit={handleSubmit} className="space-y-6 glass p-8 rounded-2xl">
-          <div className="grid grid-cols-2 gap-4">
+        <div className="glass p-8 rounded-2xl space-y-8">
+          <div className="flex gap-4 justify-center">
             <Button
               type="button"
               variant={customerType === "residential" ? "default" : "outline"}
-              className="button-hover"
+              className="button-hover flex gap-2 py-6 flex-1 max-w-[200px]"
               onClick={() => setCustomerType("residential")}
             >
+              <Home className="h-5 w-5" />
               Residencial
             </Button>
             <Button
               type="button"
               variant={customerType === "business" ? "default" : "outline"}
-              className="button-hover"
+              className="button-hover flex gap-2 py-6 flex-1 max-w-[200px]"
               onClick={() => setCustomerType("business")}
             >
+              <Building2 className="h-5 w-5" />
               Empresarial
             </Button>
           </div>
 
-          <div className="space-y-2">
-            <label className="text-sm font-medium">
-              Valor médio da fatura mensal (€)
-            </label>
-            <Input
-              type="number"
-              placeholder="0.00"
-              value={monthlyBill}
-              onChange={(e) => setMonthlyBill(e.target.value)}
-              className="text-lg"
-            />
+          <div className="grid gap-6">
+            <div className="space-y-2">
+              <label className="text-sm font-medium flex items-center gap-2">
+                <Zap className="h-4 w-4" />
+                Consumo Mensal (kWh)
+              </label>
+              <Input
+                type="number"
+                placeholder="150"
+                value={monthlyConsumption}
+                onChange={(e) => setMonthlyConsumption(e.target.value)}
+                className="text-lg"
+              />
+            </div>
+
+            <div className="space-y-2">
+              <label className="text-sm font-medium flex items-center gap-2">
+                <Lightbulb className="h-4 w-4" />
+                Potência Contratada (kVA)
+              </label>
+              <Input
+                type="number"
+                value={contractedPower}
+                onChange={(e) => setContractedPower(e.target.value)}
+                className="text-lg"
+              />
+            </div>
+
+            <div className="space-y-2">
+              <label className="text-sm font-medium flex items-center gap-2">
+                <Euro className="h-4 w-4" />
+                Tarifa Atual (€/kWh)
+              </label>
+              <Input
+                type="number"
+                value={currentRate}
+                onChange={(e) => setCurrentRate(e.target.value)}
+                className="text-lg"
+                step="0.0001"
+              />
+            </div>
           </div>
 
-          <div className="space-y-2">
-            <label className="text-sm font-medium">
-              Observações (opcional)
-            </label>
-            <Textarea
-              placeholder="Adicione qualquer informação relevante..."
-              value={observations}
-              onChange={(e) => setObservations(e.target.value)}
-              className="h-32"
-            />
-          </div>
+          {savings && (
+            <div className="bg-primary/5 p-6 rounded-xl space-y-4">
+              <div className="flex items-center gap-2 justify-center text-xl font-semibold text-primary">
+                <Calculator className="h-6 w-6" />
+                Poupança Estimada
+              </div>
+              <div className="grid gap-4">
+                <div className="flex justify-between items-center">
+                  <span>Poupança Mensal:</span>
+                  <span className="text-xl font-semibold text-primary">{savings.monthly}€</span>
+                </div>
+                <div className="flex justify-between items-center">
+                  <span>Poupança Anual:</span>
+                  <span className="text-xl font-semibold text-primary">{savings.annual}€</span>
+                </div>
+                <div className="flex justify-between items-center">
+                  <span>Poupança em Percentagem:</span>
+                  <span className="text-xl font-semibold text-primary">{savings.percentage}%</span>
+                </div>
+              </div>
+            </div>
+          )}
 
-          <div className="flex gap-4">
+          <div className="flex gap-4 justify-center">
             <Button
               type="button"
               variant="ghost"
@@ -114,13 +172,13 @@ const EnergyCalculator = () => {
               Voltar
             </Button>
             <Button
-              type="submit"
-              className="flex-1 button-hover"
+              onClick={handleSubmit}
+              className="button-hover bg-primary text-white px-8"
             >
               Solicitar Proposta
             </Button>
           </div>
-        </form>
+        </div>
       </div>
     </div>
   );
