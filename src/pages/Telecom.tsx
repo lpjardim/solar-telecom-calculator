@@ -70,7 +70,7 @@ const Telecom = () => {
     <div className="min-h-screen flex flex-col items-center justify-center p-6 page-transition">
       <div className="max-w-4xl w-full text-center space-y-12">
         <div className="space-y-4">
-          <h1 className="text-4xl font-bold tracking-tight bg-gradient-to-r from-primary to-primary/60 bg-clip-text text-transparent flex items-center justify-center gap-3">
+          <h1 className="text-4xl font-bold tracking-tight text-primary flex items-center justify-center gap-3">
             <Phone className="h-8 w-8 md:h-12 md:w-12 text-primary" />
             Melhore o Seu Serviço de Telecomunicações
           </h1>
