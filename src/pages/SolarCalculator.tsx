@@ -5,8 +5,7 @@ import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { toast } from "sonner";
-import { Switch } from "@/components/ui/switch";
-import { Sun, Home, Battery, Monitor, Shield, Sparkles, Lightbulb, Mail, MapPin, Check, PanelTop, Phone } from "lucide-react";
+import { Sun, Home, Battery, Monitor, Shield, Sparkles, Lightbulb, Mail, MapPin, Check, PanelTop, Phone, Building } from "lucide-react";
 
 type CustomerType = "residential" | "business";
 
@@ -44,6 +43,7 @@ const SolarCalculator = () => {
   const navigate = useNavigate();
   const [address, setAddress] = useState("");
   const [showMap, setShowMap] = useState(false);
+  const [customerType, setCustomerType] = useState<CustomerType>("residential");
   const [systemOptions, setSystemOptions] = useState<SystemOptions>({
     ...initialSystemOptions,
     production: calculateAnnualProduction(initialSystemOptions.panels),
@@ -156,6 +156,25 @@ const SolarCalculator = () => {
         </h2>
 
         <div className="glass p-8 rounded-2xl space-y-8">
+          <div className="flex justify-center gap-4">
+            <Button
+              variant={customerType === "residential" ? "default" : "outline"}
+              className="flex items-center gap-2 w-40"
+              onClick={() => setCustomerType("residential")}
+            >
+              <Home className="h-4 w-4" />
+              Residencial
+            </Button>
+            <Button
+              variant={customerType === "business" ? "default" : "outline"}
+              className="flex items-center gap-2 w-40"
+              onClick={() => setCustomerType("business")}
+            >
+              <Building className="h-4 w-4" />
+              Empresarial
+            </Button>
+          </div>
+
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             <div className="p-4 rounded-xl bg-primary/5 space-y-2">
               <h3 className="font-semibold flex items-center gap-2">
