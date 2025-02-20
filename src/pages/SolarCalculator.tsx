@@ -1,4 +1,3 @@
-
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
@@ -17,7 +16,6 @@ import {
   Mail,
   MapPin,
   Check,
-  PanelTop,
 } from "lucide-react";
 
 type CustomerType = "residential" | "business";
@@ -39,7 +37,6 @@ const initialSystemOptions: SystemOptions = {
 };
 
 const calculateAnnualProduction = (panels: number): number => {
-  // Base production for 2 panels is 3600 kWh
   const productionPer2Panels = 3600;
   return (panels / 2) * productionPer2Panels;
 };
@@ -101,7 +98,7 @@ const SolarCalculator = () => {
       <div className="min-h-screen flex flex-col items-center justify-center p-6 page-transition">
         <div className="max-w-3xl w-full space-y-8">
           <h1 className="text-4xl font-bold tracking-tight mb-12 text-primary flex items-center justify-center gap-3">
-            <PanelTop className="h-16 w-16 text-yellow-500" />
+            <Sun className="h-16 w-16 text-yellow-500" />
             Painéis Solares
           </h1>
 
@@ -168,7 +165,7 @@ const SolarCalculator = () => {
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             <div className="p-4 rounded-xl bg-primary/5 space-y-2">
               <h3 className="font-semibold flex items-center gap-2">
-                <PanelTop className="h-5 w-5 text-primary" />
+                <Sun className="h-5 w-5 text-primary" />
                 Painéis Solares
               </h3>
               <p className="text-sm text-muted-foreground mb-4">
