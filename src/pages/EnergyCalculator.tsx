@@ -1,3 +1,4 @@
+
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
@@ -53,8 +54,8 @@ const EnergyCalculator = () => {
     const monthlySavings = currentBill - newBill;
     const annualSavings = monthlySavings * 12;
     
-    // Cálculo da percentagem real de poupança
-    const savingsPercentage = ((currentBill - newBill) / currentBill) * 100;
+    // Cálculo da percentagem real de poupança (arredondado a 2 casas decimais)
+    const savingsPercentage = Number(((currentBill - newBill) / currentBill * 100).toFixed(2));
 
     setSavings({
       monthly: monthlySavings,
