@@ -19,32 +19,29 @@ import {
   PanelTop,
 } from "lucide-react";
 
-type CustomerType = "residential" | "business";
-
 type SystemOptions = {
+  address: string;
   panels: number;
-  hasBattery: boolean;
-  production: number;
+  battery: boolean;
+  charger: boolean;
   email: string;
   observations: string;
+  production: number;
 };
 
 const initialSystemOptions: SystemOptions = {
-  panels: 8,
-  hasBattery: true,
-  production: 14400,
+  address: "",
+  panels: 10,
+  battery: false,
+  charger: false,
   email: "",
   observations: "",
+  production: 3500,
 };
 
-const calculateAnnualProduction = (panels: number): number => {
-  const productionPer2Panels = 3600;
-  return (panels / 2) * productionPer2Panels;
-};
-
-const calculateAnnualSavings = (production: number): number => {
-  const pricePerKwh = 0.18;
-  return production * pricePerKwh;
+const calculateAnnualProduction = (panels: number) => {
+  // This is a simplified calculation
+  return panels * 350;
 };
 
 const SolarCalculator = () => {
@@ -56,84 +53,82 @@ const SolarCalculator = () => {
     production: calculateAnnualProduction(initialSystemOptions.panels),
   });
 
-  const handleAddressSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    if (!address) {
-      toast.error("Por favor, insira seu endereço");
-      return;
+  const handleAddressSubmit = () => {
+    if (address.trim() !== "") {
+      setSystemOptions((prev) => ({ ...prev, address: address }));
+      setShowMap(true);
+      toast.success(
+        <div className="flex flex-col gap-2">
+          <span className="font-semibold">Localização Confirmada!</span>
+          <span>Pode continuar para personalizar a sua instalação.</span>
+        </div>,
+        {
+          duration: 5000,
+        }
+      );
+    } else {
+      toast.error("Por favor, insira uma morada válida.", {
+        duration: 5000,
+      });
     }
-    setShowMap(true);
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    
-    if (!systemOptions.email) {
-      toast.error("Por favor, insira o seu email");
-      return;
-    }
-
-    navigate("/thank-you");
-  };
-
-  const updateSystemOption = <K extends keyof SystemOptions>(
-    key: K,
-    value: SystemOptions[K]
-  ) => {
+  const updateSystemOption = (key: keyof SystemOptions, value: any) => {
     setSystemOptions((prev) => {
-      const newOptions = {
-        ...prev,
-        [key]: value,
-      };
-      
-      if (key === 'panels') {
-        newOptions.production = calculateAnnualProduction(value as number);
+      const updatedOptions: SystemOptions = { ...prev, [key]: value };
+      if (key === "panels") {
+        updatedOptions.production = calculateAnnualProduction(Number(value));
       }
-      
-      return newOptions;
+      return updatedOptions;
     });
   };
 
   if (!showMap) {
     return (
       <div className="min-h-screen flex flex-col items-center justify-center p-6 page-transition">
-        <div className="max-w-3xl w-full space-y-8">
-          <h1 className="text-4xl font-bold tracking-tight mb-12 text-primary flex items-center justify-center gap-3">
-            <Sun className="h-16 w-16 text-yellow-500" />
-            Painéis Solares
-          </h1>
-
-          <div className="text-center space-y-4">
-            <p className="text-2xl font-semibold">
-              aos preços mais baixos em Portugal
-            </p>
-            <p className="text-lg text-muted-foreground">
-              ⚡ Simule já a sua proposta e poupe até 80% na fatura de eletricidade
-            </p>
+        <div className="max-w-4xl w-full text-center space-y-12">
+          <div className="space-y-4">
+            <h1 className="text-4xl font-bold tracking-tight bg-gradient-to-r from-primary to-primary/60 bg-clip-text text-transparent flex items-center justify-center gap-3">
+              <Sun className="h-12 w-12 text-primary" />
+              Calculadora Solar
+            </h1>
+            <div className="space-y-2">
+              <p className="text-xl text-muted-foreground">
+                Descubra o potencial da energia solar para a sua casa.
+              </p>
+              <p className="text-lg text-muted-foreground">
+                Insira a sua morada para começar.
+              </p>
+            </div>
           </div>
 
-          <form onSubmit={handleAddressSubmit} className="glass p-8 rounded-2xl space-y-6">
-            <div className="space-y-2">
-              <label className="text-sm font-medium flex items-center gap-2">
-                <MapPin className="h-4 w-4 text-primary" />
-                Verifique o seu endereço
-              </label>
-              <div className="flex gap-4">
-                <Input
-                  type="text"
-                  placeholder="Ex: Rua do Sol, 123"
-                  value={address}
-                  onChange={(e) => setAddress(e.target.value)}
-                  className="text-lg flex-1"
-                />
-                <Button type="submit" className="button-hover">
-                  Continuar
-                </Button>
+          <div className="glass p-8 rounded-2xl space-y-6">
+            <div className="space-y-4">
+              <div className="flex items-center gap-4">
+                <MapPin className="h-5 w-5 text-primary" />
+                <label htmlFor="address" className="text-sm font-medium">
+                  Morada
+                </label>
               </div>
+              <Input
+                type="text"
+                id="address"
+                placeholder="Rua, Código Postal, Cidade"
+                value={address}
+                onChange={(e) => setAddress(e.target.value)}
+                className="text-lg"
+              />
             </div>
-          </form>
 
-          <div className="flex gap-4 justify-center">
+            <Button
+              className="button-hover bg-primary text-white font-bold"
+              onClick={handleAddressSubmit}
+            >
+              Confirmar Localização
+            </Button>
+          </div>
+
+          <div className="flex flex-col gap-4 items-center">
             <Button
               variant="ghost"
               className="button-hover"
@@ -163,110 +158,59 @@ const SolarCalculator = () => {
         </h2>
 
         <div className="glass p-8 rounded-2xl space-y-8">
+          {/* Grid de opções */}
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            <div className="p-4 rounded-xl bg-primary/5 space-y-2">
-              <h3 className="font-semibold flex items-center gap-2">
-                <PanelTop className="h-5 w-5 text-primary" />
+            {/* Painéis */}
+            <div className="space-y-2">
+              <label className="text-sm font-medium flex items-center gap-2">
+                <PanelTop className="h-4 w-4 text-primary" />
                 Painéis Solares
-              </h3>
-              <p className="text-sm text-muted-foreground mb-4">
-                Número de painéis no sistema
-              </p>
-              <Select
-                value={String(systemOptions.panels)}
-                onValueChange={(value) => updateSystemOption("panels", Number(value))}
-              >
-                <SelectTrigger>
-                  <SelectValue />
-                </SelectTrigger>
-                <SelectContent className="bg-background border shadow-lg">
-                  <SelectItem value="2">2 Painéis</SelectItem>
-                  <SelectItem value="4">4 Painéis</SelectItem>
-                  <SelectItem value="6">6 Painéis</SelectItem>
-                  <SelectItem value="8">8 Painéis</SelectItem>
-                  <SelectItem value="10">10 Painéis</SelectItem>
-                  <SelectItem value="12">12 Painéis</SelectItem>
-                </SelectContent>
-              </Select>
+              </label>
+              <Input
+                type="number"
+                placeholder="Número de painéis"
+                value={systemOptions.panels}
+                onChange={(e) => updateSystemOption("panels", Number(e.target.value))}
+                className="text-lg"
+              />
             </div>
 
-            <div className="p-4 rounded-xl bg-primary/5 space-y-2">
-              <h3 className="font-semibold flex items-center gap-2">
-                <Battery className="h-5 w-5 text-primary" />
+            {/* Bateria */}
+            <div className="space-y-2">
+              <label className="text-sm font-medium flex items-center gap-2">
+                <Battery className="h-4 w-4 text-primary" />
                 Bateria
-              </h3>
-              <p className="text-sm text-muted-foreground mb-4">
-                Sistema de armazenamento
-              </p>
-              <Select
-                value={systemOptions.hasBattery ? "yes" : "no"}
-                onValueChange={(value) => updateSystemOption("hasBattery", value === "yes")}
-              >
-                <SelectTrigger>
-                  <SelectValue />
+              </label>
+              <Select onValueChange={(value) => updateSystemOption("battery", value === "true")}>
+                <SelectTrigger className="w-full text-lg">
+                  <SelectValue placeholder={systemOptions.battery ? "Sim" : "Não"} />
                 </SelectTrigger>
-                <SelectContent className="bg-background border shadow-lg">
-                  <SelectItem value="yes">Com Bateria</SelectItem>
-                  <SelectItem value="no">Sem Bateria</SelectItem>
+                <SelectContent>
+                  <SelectItem value="true">Sim</SelectItem>
+                  <SelectItem value="false">Não</SelectItem>
                 </SelectContent>
               </Select>
             </div>
 
-            <div className="p-4 rounded-xl bg-primary/5 space-y-2">
-              <h3 className="font-semibold flex items-center gap-2">
-                <Monitor className="h-5 w-5 text-primary" />
-                Sistema de Monitorização
-              </h3>
-              <p className="text-sm text-muted-foreground mb-4">
-                <span className="text-primary font-medium">Incluído no sistema</span>
-              </p>
-              <div className="flex items-center gap-2 text-primary">
-                <Check className="h-5 w-5" />
-                <span className="font-medium">Monitorização em tempo real</span>
-              </div>
-            </div>
-
-            <div className="p-4 rounded-xl bg-primary/5 space-y-2">
-              <h3 className="font-semibold flex items-center gap-2">
-                <Shield className="h-5 w-5 text-primary" />
-                Garantia do Sistema
-              </h3>
-              <p className="text-sm text-muted-foreground mb-4">
-                <span className="text-primary font-medium">25 anos de garantia incluída</span>
-              </p>
-              <div className="flex items-center gap-2 text-primary">
-                <Check className="h-5 w-5" />
-                <span className="font-medium">Máxima proteção do investimento</span>
-              </div>
-            </div>
-
-            <div className="p-4 rounded-xl bg-primary/5 space-y-2">
-              <h3 className="font-semibold flex items-center gap-2">
-                <Sparkles className="h-5 w-5 text-primary" />
-                Produção Anual
-              </h3>
-              <p className="text-sm text-muted-foreground mb-4">
-                Estimativa de produção
-              </p>
-              <div className="text-primary font-medium">
-                {systemOptions.production.toLocaleString('pt-PT')} kWh/ano
-              </div>
-            </div>
-
-            <div className="p-4 rounded-xl bg-primary/5 space-y-2">
-              <h3 className="font-semibold flex items-center gap-2">
-                <Lightbulb className="h-5 w-5 text-primary" />
-                Poupança Estimada
-              </h3>
-              <p className="text-sm text-muted-foreground">
-                Até 80% na fatura
-              </p>
-              <p className="text-lg font-semibold text-primary">
-                {Math.round(calculateAnnualSavings(systemOptions.production)).toLocaleString('pt-PT')}€ /ano
-              </p>
+            {/* Carregador */}
+            <div className="space-y-2">
+              <label className="text-sm font-medium flex items-center gap-2">
+                <Lightbulb className="h-4 w-4 text-primary" />
+                Carregador Elétrico
+              </label>
+              <Select onValueChange={(value) => updateSystemOption("charger", value === "true")}>
+                <SelectTrigger className="w-full text-lg">
+                  <SelectValue placeholder={systemOptions.charger ? "Sim" : "Não"} />
+                </SelectTrigger>
+                <SelectContent>
+                  <SelectItem value="true">Sim</SelectItem>
+                  <SelectItem value="false">Não</SelectItem>
+                </SelectContent>
+              </Select>
             </div>
           </div>
 
+          {/* Email input */}
           <div className="space-y-2">
             <label className="text-sm font-medium flex items-center gap-2">
               <Mail className="h-4 w-4 text-primary" />
@@ -282,6 +226,7 @@ const SolarCalculator = () => {
             />
           </div>
 
+          {/* Observações textarea */}
           <div className="space-y-2">
             <label className="text-sm font-medium">
               Observações
@@ -294,13 +239,8 @@ const SolarCalculator = () => {
             />
           </div>
 
+          {/* Botões de navegação */}
           <div className="flex flex-col gap-4 items-center">
-            <Button
-              onClick={handleSubmit}
-              className="button-hover bg-primary text-white font-bold"
-            >
-              Solicitar Proposta
-            </Button>
             <Button
               variant="ghost"
               className="button-hover"
