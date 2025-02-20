@@ -30,7 +30,7 @@ const Services = () => {
 
           <div className="relative">
             <Button
-              className="glass button-hover p-12 h-auto flex flex-col gap-4 font-bold"
+              className="glass button-hover p-12 h-auto w-full flex flex-col gap-4 font-bold"
               variant="outline"
               onClick={() => navigate("/telecom")}
             >
