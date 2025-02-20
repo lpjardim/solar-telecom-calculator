@@ -1,3 +1,4 @@
+
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
@@ -177,7 +178,7 @@ const SolarCalculator = () => {
               </Button>
               <div className="absolute bottom-[5%] right-[5%] transform translate-x-[35%] translate-y-[25%] rotate-[-30deg] z-10">
                 <div className="bg-[#ea384c] text-white px-2 py-0.5 rounded-sm text-xs font-bold shadow-lg">
-                  Oferta Especial
+                  0€
                 </div>
               </div>
             </div>
