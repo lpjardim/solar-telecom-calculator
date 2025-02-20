@@ -1,5 +1,5 @@
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -34,12 +34,16 @@ const EnergyCalculator = () => {
     "17.25", "20.70", "27.60", "34.50", "41.40"
   ];
 
+  useEffect(() => {
+    calculateSavings();
+  }, [consumption, rate, power]); // Recalcula sempre que estes valores mudarem
+
   const calculateSavings = () => {
     const consumptionValue = parseFloat(consumption);
     const rateValue = parseFloat(rate);
 
-    if (isNaN(consumptionValue) || isNaN(rateValue)) {
-      toast.error("Por favor, insira valores numéricos válidos.");
+    if (isNaN(consumptionValue) || isNaN(rateValue) || consumptionValue === 0) {
+      setSavings(null);
       return;
     }
 
@@ -190,12 +194,6 @@ const EnergyCalculator = () => {
         )}
 
         <div className="flex flex-col gap-4 items-center">
-          <Button
-            className="button-hover bg-primary text-white font-bold w-full max-w-md"
-            onClick={calculateSavings}
-          >
-            Calcular Poupança
-          </Button>
           <Button
             className="button-hover bg-primary text-white font-bold w-full max-w-md"
             onClick={handleSubmitProposal}
