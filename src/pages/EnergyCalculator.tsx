@@ -1,4 +1,3 @@
-
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
@@ -14,6 +13,8 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
+import { Switch } from "@/components/ui/switch";
+import { Phone } from "lucide-react";
 
 const EnergyCalculator = () => {
   const navigate = useNavigate();
@@ -28,6 +29,8 @@ const EnergyCalculator = () => {
     annual: number;
     percentage: number;
   } | null>(null);
+  const [wantsPhoneCall, setWantsPhoneCall] = useState(false);
+  const [phoneNumber, setPhoneNumber] = useState("");
 
   const powerOptions = [
     "1.15", "2.30", "3.45", "4.60", "5.75", "6.90", "10.35", "13.80", 
@@ -154,6 +157,33 @@ const EnergyCalculator = () => {
               value={email}
               onChange={(e) => setEmail(e.target.value)}
             />
+          </div>
+          <div className="space-y-4">
+            <div className="flex items-center justify-between">
+              <Label htmlFor="wantsPhoneCall" className="flex items-center gap-2">
+                <Phone className="h-4 w-4 text-primary" />
+                Quer ser contactado via chamada telefónica?
+              </Label>
+              <Switch
+                id="wantsPhoneCall"
+                checked={wantsPhoneCall}
+                onCheckedChange={setWantsPhoneCall}
+              />
+            </div>
+
+            {wantsPhoneCall && (
+              <div>
+                <Label htmlFor="phoneNumber">Número de Telemóvel:</Label>
+                <Input
+                  type="tel"
+                  id="phoneNumber"
+                  placeholder="912 345 678"
+                  value={phoneNumber}
+                  onChange={(e) => setPhoneNumber(e.target.value)}
+                  required
+                />
+              </div>
+            )}
           </div>
           <div>
             <Label htmlFor="observations">Observações:</Label>

@@ -1,8 +1,9 @@
-
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { toast } from "sonner";
+import { Switch } from "@/components/ui/switch";
+import { Input } from "@/components/ui/input";
 import {
   MessageSquare,
   Check,
@@ -46,6 +47,9 @@ const Telecom = () => {
   const navigate = useNavigate();
   const [selectedProvider, setSelectedProvider] = useState("");
   const [showInstructions, setShowInstructions] = useState(false);
+  const [wantsPhoneCall, setWantsPhoneCall] = useState(false);
+  const [phoneNumber, setPhoneNumber] = useState("");
+  const [email, setEmail] = useState("");
 
   const handleProviderSelect = (providerId: string) => {
     setSelectedProvider(providerId);
@@ -128,6 +132,45 @@ const Telecom = () => {
               </div>
               
               <div className="space-y-4">
+                <div className="space-y-4">
+                  <div>
+                    <label className="text-sm font-medium">Email</label>
+                    <Input
+                      type="email"
+                      placeholder="seu@email.com"
+                      value={email}
+                      onChange={(e) => setEmail(e.target.value)}
+                      className="mt-2"
+                      required
+                    />
+                  </div>
+
+                  <div className="flex items-center justify-between">
+                    <label className="text-sm font-medium flex items-center gap-2">
+                      <Phone className="h-4 w-4 text-primary" />
+                      Quer ser contactado via chamada telefónica?
+                    </label>
+                    <Switch
+                      checked={wantsPhoneCall}
+                      onCheckedChange={setWantsPhoneCall}
+                    />
+                  </div>
+
+                  {wantsPhoneCall && (
+                    <div>
+                      <label className="text-sm font-medium">Número de Telemóvel</label>
+                      <Input
+                        type="tel"
+                        placeholder="912 345 678"
+                        value={phoneNumber}
+                        onChange={(e) => setPhoneNumber(e.target.value)}
+                        className="mt-2"
+                        required
+                      />
+                    </div>
+                  )}
+                </div>
+
                 <div className="flex items-center gap-4">
                   <div className="bg-primary text-white p-3 rounded-full">
                     <Send className="h-6 w-6" />

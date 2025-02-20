@@ -5,19 +5,8 @@ import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { toast } from "sonner";
-import {
-  Sun,
-  Home,
-  Battery,
-  Monitor,
-  Shield,
-  Sparkles,
-  Lightbulb,
-  Mail,
-  MapPin,
-  Check,
-  PanelTop,
-} from "lucide-react";
+import { Switch } from "@/components/ui/switch";
+import { Sun, Home, Battery, Monitor, Shield, Sparkles, Lightbulb, Mail, MapPin, Check, PanelTop, Phone } from "lucide-react";
 
 type CustomerType = "residential" | "business";
 
@@ -27,6 +16,8 @@ type SystemOptions = {
   production: number;
   email: string;
   observations: string;
+  wantsPhoneCall: boolean;
+  phoneNumber: string;
 };
 
 const initialSystemOptions: SystemOptions = {
@@ -35,6 +26,8 @@ const initialSystemOptions: SystemOptions = {
   production: 14400,
   email: "",
   observations: "",
+  wantsPhoneCall: false,
+  phoneNumber: "",
 };
 
 const calculateAnnualProduction = (panels: number): number => {
@@ -280,6 +273,35 @@ const SolarCalculator = () => {
               className="text-lg"
               required
             />
+          </div>
+
+          <div className="space-y-4">
+            <div className="flex items-center justify-between">
+              <label className="text-sm font-medium flex items-center gap-2">
+                <Phone className="h-4 w-4 text-primary" />
+                Quer ser contactado via chamada telefónica?
+              </label>
+              <Switch
+                checked={systemOptions.wantsPhoneCall}
+                onCheckedChange={(checked) => updateSystemOption("wantsPhoneCall", checked)}
+              />
+            </div>
+
+            {systemOptions.wantsPhoneCall && (
+              <div className="space-y-2">
+                <label className="text-sm font-medium">
+                  Número de Telemóvel
+                </label>
+                <Input
+                  type="tel"
+                  placeholder="912 345 678"
+                  value={systemOptions.phoneNumber}
+                  onChange={(e) => updateSystemOption("phoneNumber", e.target.value)}
+                  className="text-lg"
+                  required
+                />
+              </div>
+            )}
           </div>
 
           <div className="space-y-2">
