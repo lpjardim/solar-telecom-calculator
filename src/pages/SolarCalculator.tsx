@@ -1,4 +1,3 @@
-
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
@@ -167,14 +166,21 @@ const SolarCalculator = () => {
               <Home className="h-4 w-4" />
               Residencial
             </Button>
-            <Button
-              variant={customerType === "business" ? "default" : "outline"}
-              className="flex items-center gap-2 w-40"
-              onClick={() => setCustomerType("business")}
-            >
-              <Building className="h-4 w-4" />
-              Empresarial
-            </Button>
+            <div className="relative">
+              <Button
+                variant={customerType === "business" ? "default" : "outline"}
+                className="flex items-center gap-2 w-40"
+                onClick={() => setCustomerType("business")}
+              >
+                <Building className="h-4 w-4" />
+                Empresarial
+              </Button>
+              <div className="absolute bottom-[5%] right-[5%] transform translate-x-[35%] translate-y-[25%] rotate-[-30deg] z-10">
+                <div className="bg-[#ea384c] text-white px-2 py-0.5 rounded-sm text-xs font-bold shadow-lg">
+                  Oferta Especial
+                </div>
+              </div>
+            </div>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
