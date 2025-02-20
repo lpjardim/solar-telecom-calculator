@@ -1,3 +1,4 @@
+
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
@@ -5,6 +6,7 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Building2, Home } from "lucide-react";
 import { Textarea } from "@/components/ui/textarea";
+import { toast } from "sonner";
 import {
   Select,
   SelectContent,
@@ -21,6 +23,11 @@ const EnergyCalculator = () => {
   const [email, setEmail] = useState("");
   const [observations, setObservations] = useState("");
   const [selectedType, setSelectedType] = useState<"residential" | "business">("residential");
+  const [savings, setSavings] = useState<{
+    monthly: number;
+    annual: number;
+    percentage: number;
+  } | null>(null);
 
   const powerOptions = [
     "1.15", "2.30", "3.45", "4.60", "5.75", "6.90", "10.35", "13.80", 
@@ -32,7 +39,7 @@ const EnergyCalculator = () => {
     const rateValue = parseFloat(rate);
 
     if (isNaN(consumptionValue) || isNaN(rateValue)) {
-      alert("Por favor, insira valores numéricos válidos.");
+      toast.error("Por favor, insira valores numéricos válidos.");
       return;
     }
 
@@ -43,11 +50,11 @@ const EnergyCalculator = () => {
     const annualSavings = monthlySavings * 12;
     const savingsPercentage = 25;
 
-    alert(
-      `Poupança Mensal Estimada: ${monthlySavings.toFixed(2)}€\n` +
-      `Poupança Anual: ${annualSavings.toFixed(2)}€\n` +
-      `Poupança em Percentagem: ${savingsPercentage}%`
-    );
+    setSavings({
+      monthly: monthlySavings,
+      annual: annualSavings,
+      percentage: savingsPercentage
+    });
   };
 
   return (
@@ -141,12 +148,38 @@ const EnergyCalculator = () => {
           </div>
         </div>
 
+        {savings && (
+          <div className="bg-primary/5 p-6 rounded-xl space-y-4">
+            <h2 className="text-xl font-semibold text-primary">Poupança Estimada</h2>
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+              <div className="bg-white dark:bg-gray-800 p-4 rounded-lg shadow-sm">
+                <p className="text-sm text-muted-foreground">Poupança Mensal</p>
+                <p className="text-2xl font-bold text-primary">
+                  {savings.monthly.toFixed(2)}€
+                </p>
+              </div>
+              <div className="bg-white dark:bg-gray-800 p-4 rounded-lg shadow-sm">
+                <p className="text-sm text-muted-foreground">Poupança Anual</p>
+                <p className="text-2xl font-bold text-primary">
+                  {savings.annual.toFixed(2)}€
+                </p>
+              </div>
+              <div className="bg-white dark:bg-gray-800 p-4 rounded-lg shadow-sm">
+                <p className="text-sm text-muted-foreground">Percentagem</p>
+                <p className="text-2xl font-bold text-primary">
+                  {savings.percentage}%
+                </p>
+              </div>
+            </div>
+          </div>
+        )}
+
         <div className="flex flex-col gap-4 items-center">
           <Button
             className="button-hover bg-primary text-white font-bold w-full max-w-md"
             onClick={calculateSavings}
           >
-            Solicitar Proposta
+            Calcular Poupança
           </Button>
           <Button
             variant="ghost"
