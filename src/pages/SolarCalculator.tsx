@@ -18,7 +18,6 @@ type SystemOptions = {
   observations: string;
   wantsPhoneCall: boolean;
   phoneNumber: string;
-  customerType: CustomerType;
 };
 
 const initialSystemOptions: SystemOptions = {
@@ -29,7 +28,6 @@ const initialSystemOptions: SystemOptions = {
   observations: "",
   wantsPhoneCall: false,
   phoneNumber: "",
-  customerType: "residential",
 };
 
 const calculateAnnualProduction = (panels: number): number => {
@@ -158,22 +156,6 @@ const SolarCalculator = () => {
         </h2>
 
         <div className="glass p-8 rounded-2xl space-y-8">
-          <div className="space-y-4">
-            <label className="text-sm font-medium">Tipo de Cliente</label>
-            <Select
-              value={systemOptions.customerType}
-              onValueChange={(value: CustomerType) => updateSystemOption("customerType", value)}
-            >
-              <SelectTrigger className="w-full">
-                <SelectValue />
-              </SelectTrigger>
-              <SelectContent>
-                <SelectItem value="residential">Residencial</SelectItem>
-                <SelectItem value="business">Empresarial</SelectItem>
-              </SelectContent>
-            </Select>
-          </div>
-
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             <div className="p-4 rounded-xl bg-primary/5 space-y-2">
               <h3 className="font-semibold flex items-center gap-2">
