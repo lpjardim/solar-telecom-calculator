@@ -9,7 +9,10 @@ const ThankYou = () => {
   return (
     <div className="min-h-screen flex flex-col items-center justify-center p-6 page-transition">
       <div className="max-w-xl w-full text-center space-y-8 glass p-8 rounded-2xl">
-        <h2 className="text-3xl font-bold text-primary">Obrigado em nome da Jardim Solar</h2>
+        <div className="space-y-2">
+          <h2 className="text-4xl font-bold text-primary">Obrigado</h2>
+          <p className="text-2xl text-primary">em nome da Jardim Solar</p>
+        </div>
         
         <div className="space-y-6">
           <div className="space-y-4">
