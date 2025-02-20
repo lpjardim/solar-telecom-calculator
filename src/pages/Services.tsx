@@ -29,11 +29,6 @@ const Services = () => {
           </Button>
 
           <div className="relative">
-            <div className="absolute -top-4 left-1/2 transform -translate-x-1/2 z-10">
-              <div className="bg-[#ea384c] text-white px-4 py-1 rounded-full font-bold shadow-lg animate-pulse">
-                Oferta Especial
-              </div>
-            </div>
             <Button
               className="glass button-hover p-12 h-auto flex flex-col gap-4 font-bold"
               variant="outline"
@@ -44,6 +39,11 @@ const Services = () => {
                 Compare planos e obtenha<br />a melhor oferta para si
               </span>
             </Button>
+            <div className="absolute bottom-0 right-0 transform translate-x-[30%] translate-y-[30%] rotate-[30deg] z-10">
+              <div className="bg-[#ea384c] text-white px-4 py-1 rounded-sm font-bold shadow-lg">
+                Oferta Especial
+              </div>
+            </div>
           </div>
         </div>
 
