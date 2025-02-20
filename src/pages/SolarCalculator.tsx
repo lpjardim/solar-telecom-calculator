@@ -316,7 +316,7 @@ const SolarCalculator = () => {
                 </div>
                 <h3 className="text-xl font-semibold text-center">Proteção Contra Aumentos</h3>
                 <p className="text-muted-foreground text-center">
-                  Com preços de energia em constante subida, fixe já o seu custo de eletricidade para os próximos 25 anos.
+                  Com preços de energia em constante subida, fixe o seu custo de eletricidade para os próximos 25 anos.
                 </p>
               </div>
 
