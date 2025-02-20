@@ -39,8 +39,8 @@ const Services = () => {
                 Compare planos e obtenha<br />a melhor oferta para si
               </span>
             </Button>
-            <div className="absolute bottom-0 right-0 transform translate-x-[30%] translate-y-[30%] rotate-[30deg] z-10">
-              <div className="bg-[#ea384c] text-white px-4 py-1 rounded-sm font-bold shadow-lg">
+            <div className="absolute bottom-0 right-0 transform translate-x-[30%] translate-y-[30%] rotate-[-30deg] z-10">
+              <div className="bg-[#ea384c] text-white px-3 py-0.5 rounded-sm text-sm font-bold shadow-lg">
                 Oferta Especial
               </div>
             </div>
