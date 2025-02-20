@@ -16,6 +16,7 @@ import {
   Mail,
   MapPin,
   Check,
+  PanelTop,
 } from "lucide-react";
 
 type CustomerType = "residential" | "business";
@@ -165,7 +166,7 @@ const SolarCalculator = () => {
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             <div className="p-4 rounded-xl bg-primary/5 space-y-2">
               <h3 className="font-semibold flex items-center gap-2">
-                <Sun className="h-5 w-5 text-primary" />
+                <PanelTop className="h-5 w-5 text-primary" />
                 Painéis Solares
               </h3>
               <p className="text-sm text-muted-foreground mb-4">
