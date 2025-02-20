@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import { Building2, Home } from "lucide-react";
+import { Building2, Home, Mail, MapPin } from "lucide-react";
 import { Textarea } from "@/components/ui/textarea";
 import { toast } from "sonner";
 import {
@@ -62,6 +62,14 @@ const EnergyCalculator = () => {
       annual: annualSavings,
       percentage: savingsPercentage
     });
+  };
+
+  const handleSubmitProposal = () => {
+    if (!email) {
+      toast.error("Por favor, insira o seu email");
+      return;
+    }
+    navigate("/thank-you");
   };
 
   return (
@@ -187,6 +195,12 @@ const EnergyCalculator = () => {
             onClick={calculateSavings}
           >
             Calcular Poupança
+          </Button>
+          <Button
+            className="button-hover bg-primary text-white font-bold w-full max-w-md"
+            onClick={handleSubmitProposal}
+          >
+            Solicitar Proposta
           </Button>
           <Button
             variant="ghost"
