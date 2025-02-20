@@ -294,6 +294,70 @@ const SolarCalculator = () => {
             />
           </div>
 
+          <div className="mt-16 space-y-8">
+            <h2 className="text-3xl font-bold text-center text-primary">
+              Porquê Investir em Painéis Solares?
+            </h2>
+
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+              <div className="glass p-6 rounded-xl space-y-4">
+                <div className="h-12 w-12 bg-primary/10 rounded-full flex items-center justify-center mx-auto">
+                  <Shield className="h-6 w-6 text-primary" />
+                </div>
+                <h3 className="text-xl font-semibold text-center">Segurança Energética</h3>
+                <p className="text-muted-foreground text-center">
+                  Garanta a sua independência energética e proteja-se contra falhas na rede elétrica.
+                </p>
+              </div>
+
+              <div className="glass p-6 rounded-xl space-y-4">
+                <div className="h-12 w-12 bg-primary/10 rounded-full flex items-center justify-center mx-auto">
+                  <Sparkles className="h-6 w-6 text-primary" />
+                </div>
+                <h3 className="text-xl font-semibold text-center">Proteção Contra Aumentos</h3>
+                <p className="text-muted-foreground text-center">
+                  Com preços de energia em constante subida, fixe já o seu custo de eletricidade para os próximos 25 anos.
+                </p>
+              </div>
+
+              <div className="glass p-6 rounded-xl space-y-4">
+                <div className="h-12 w-12 bg-primary/10 rounded-full flex items-center justify-center mx-auto">
+                  <Sun className="h-6 w-6 text-primary" />
+                </div>
+                <h3 className="text-xl font-semibold text-center">Impacto Ambiental</h3>
+                <p className="text-muted-foreground text-center">
+                  Contribua para um futuro mais sustentável reduzindo a sua pegada de carbono.
+                </p>
+              </div>
+            </div>
+
+            <div className="glass p-8 rounded-xl mt-8">
+              <div className="max-w-3xl mx-auto space-y-6">
+                <h3 className="text-2xl font-semibold text-center text-primary">
+                  Sabia que...
+                </h3>
+                <p className="text-lg text-center text-muted-foreground">
+                  Os preços da eletricidade aumentaram mais de 30% nos últimos 5 anos e a tendência é continuar.
+                  Com painéis solares, você:
+                </p>
+                <ul className="space-y-4">
+                  <li className="flex items-center gap-3">
+                    <Check className="h-5 w-5 text-primary" />
+                    <span>Fixa o seu custo de energia por décadas</span>
+                  </li>
+                  <li className="flex items-center gap-3">
+                    <Check className="h-5 w-5 text-primary" />
+                    <span>Valoriza o seu imóvel em até 4%</span>
+                  </li>
+                  <li className="flex items-center gap-3">
+                    <Check className="h-5 w-5 text-primary" />
+                    <span>Reduz a sua fatura de eletricidade em até 80%</span>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+
           <div className="flex flex-col gap-4 items-center">
             <Button
               onClick={handleSubmit}
