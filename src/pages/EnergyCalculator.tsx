@@ -1,4 +1,3 @@
-
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
@@ -43,12 +42,19 @@ const EnergyCalculator = () => {
       return;
     }
 
-    // Simulação de poupança (25% de desconto)
+    // Cálculo da fatura atual
     const currentBill = consumptionValue * rateValue;
-    const newBill = currentBill * 0.75;
+    
+    // Nova tarifa com desconto (exemplo: 0.1147€/kWh)
+    const newRate = 0.1147;
+    const newBill = consumptionValue * newRate;
+    
+    // Cálculo das poupanças
     const monthlySavings = currentBill - newBill;
     const annualSavings = monthlySavings * 12;
-    const savingsPercentage = 25;
+    
+    // Cálculo da percentagem real de poupança
+    const savingsPercentage = ((currentBill - newBill) / currentBill) * 100;
 
     setSavings({
       monthly: monthlySavings,
