@@ -28,16 +28,23 @@ const Services = () => {
             </span>
           </Button>
 
-          <Button
-            className="glass button-hover p-12 h-auto flex flex-col gap-4 font-bold"
-            variant="outline"
-            onClick={() => navigate("/telecom")}
-          >
-            <span className="text-2xl font-semibold">Telecomunicações</span>
-            <span className="text-muted-foreground">
-              Compare planos e obtenha<br />a melhor oferta para si
-            </span>
-          </Button>
+          <div className="relative">
+            <div className="absolute -top-4 left-1/2 transform -translate-x-1/2 z-10">
+              <div className="bg-[#ea384c] text-white px-4 py-1 rounded-full font-bold shadow-lg animate-pulse">
+                Oferta Especial
+              </div>
+            </div>
+            <Button
+              className="glass button-hover p-12 h-auto flex flex-col gap-4 font-bold"
+              variant="outline"
+              onClick={() => navigate("/telecom")}
+            >
+              <span className="text-2xl font-semibold">Telecomunicações</span>
+              <span className="text-muted-foreground">
+                Compare planos e obtenha<br />a melhor oferta para si
+              </span>
+            </Button>
+          </div>
         </div>
 
         <Button
