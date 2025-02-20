@@ -176,7 +176,7 @@ const SolarCalculator = () => {
                 <Building className="h-4 w-4" />
                 Empresarial
               </Button>
-              <div className="absolute bottom-[5%] right-[5%] transform translate-x-[35%] translate-y-[25%] rotate-[-30deg] z-10">
+              <div className="absolute top-[5%] right-[5%] transform translate-x-[35%] translate-y-[-25%] rotate-[30deg] z-10">
                 <div className="bg-[#ea384c] text-white px-2 py-0.5 rounded-sm text-xs font-bold shadow-lg">
                   0€
                 </div>
